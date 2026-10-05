@@ -1,0 +1,36 @@
+[project]
+name = "brewscope"
+version = "0.1.0"
+description = "Homebrew inventory, feature and conflict analysis for macOS, built for AI agents."
+readme = "README.md"
+authors = [
+    { name = "rNLKJA", email = "62606765+rNLKJA@users.noreply.github.com" }
+]
+requires-python = ">=3.13"
+license = "MIT"
+keywords = ["homebrew", "macos", "cli", "ai-agents", "migration"]
+dependencies = [
+    "orjson>=3.12.0",
+    "pydantic>=2.13.5",
+    "typer>=0.27.2",
+]
+
+[project.scripts]
+brewscope = "brewscope:main"
+
+[build-system]
+requires = ["uv_build>=0.12.23,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.16.10",
+]
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "PL"]
+ignore = ["PLR2004", "PLR0913"]
