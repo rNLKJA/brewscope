@@ -126,239 +126,220 @@ export default function DemoPage() {
   const [activeCommand, setActiveCommand] = useState<string>('doctor')
 
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
-      <div className="mx-auto max-w-5xl px-6 py-12">
-        <header className="mb-8">
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
+        <div className="mb-12">
           <Link
             href="/"
-            className="mb-4 inline-block font-mono text-sm text-neutral-600 hover:text-[#FF3C3C] dark:text-neutral-400"
+            className="inline-flex items-center gap-1 text-sm text-foreground/60 hover:text-brew transition-colors mb-6"
           >
-            ← Back
+            ← Back to home
           </Link>
-          <h1 className="mb-2 font-mono text-4xl font-bold tracking-tight text-black dark:text-white">
-            Interactive demo
-          </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400">
-            Explore brewscope commands with synthetic output
-          </p>
-        </header>
+          <div>
+            <h1 className="text-5xl font-bold tracking-tight mb-3">
+              Interactive demo
+            </h1>
+            <p className="text-lg text-foreground/70">
+              Explore brewscope commands with synthetic output
+            </p>
+          </div>
+        </div>
 
-        <div className="mb-8">
-          <Card className="border-2 border-black dark:border-white">
-            <CardHeader>
-              <CardTitle className="font-mono text-xl">Terminal</CardTitle>
+        {/* Terminal window */}
+        <div className="mb-12">
+          <Card className="bg-card/50 border-border/30 backdrop-blur-sm overflow-hidden">
+            <CardHeader className="bg-card/80 border-b border-border/30 pb-3">
+              <CardTitle className="text-sm font-mono">Terminal</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <Tabs value={activeCommand} onValueChange={setActiveCommand}>
-                  <TabsList className="grid w-full grid-cols-3 bg-neutral-100 dark:bg-neutral-900">
-                    <TabsTrigger value="doctor" className="font-mono">
+            <CardContent className="p-0">
+              <Tabs value={activeCommand} onValueChange={setActiveCommand} className="w-full">
+                <div className="border-b border-border/30 bg-background/30 px-6 py-0">
+                  <TabsList className="grid w-full grid-cols-3 gap-1 bg-transparent h-auto p-0 mb-0">
+                    <TabsTrigger value="doctor" className="rounded-none border-b-2 border-transparent data-[state=active]:border-brew text-sm font-mono py-3 px-0 hover:bg-background/20">
                       doctor
                     </TabsTrigger>
-                    <TabsTrigger value="describe" className="font-mono">
+                    <TabsTrigger value="describe" className="rounded-none border-b-2 border-transparent data-[state=active]:border-brew text-sm font-mono py-3 px-0 hover:bg-background/20">
                       describe
                     </TabsTrigger>
-                    <TabsTrigger value="version" className="font-mono">
+                    <TabsTrigger value="version" className="rounded-none border-b-2 border-transparent data-[state=active]:border-brew text-sm font-mono py-3 px-0 hover:bg-background/20">
                       version
                     </TabsTrigger>
                   </TabsList>
+                </div>
 
-                  <TabsContent value="doctor" className="space-y-4">
-                    <div className="rounded-sm bg-black p-4 font-mono text-sm text-white dark:bg-white dark:text-black">
-                      <div className="mb-2 text-neutral-400 dark:text-neutral-600">
-                        $ brewscope doctor
-                      </div>
-                      <div className="whitespace-pre-wrap break-all">
-                        {JSON.stringify(doctorOutput, null, 2)}
-                      </div>
+                <TabsContent value="doctor" className="space-y-6 p-6">
+                  <div className="bg-background rounded border border-border/30 p-4 font-mono text-sm space-y-2 overflow-x-auto">
+                    <div className="text-brew/80">
+                      $ brewscope doctor
                     </div>
-                    <div className="space-y-2">
-                      <h3 className="font-mono font-semibold">What it shows</h3>
-                      <ul className="list-inside list-disc space-y-1 text-sm text-neutral-700 dark:text-neutral-300">
-                        <li>
-                          <Badge variant="secondary" className="mr-2 font-mono">
-                            brew
-                          </Badge>
-                          Homebrew version and location
-                        </li>
-                        <li>
-                          <Badge variant="secondary" className="mr-2 font-mono">
-                            zsh_history
-                          </Badge>
-                          Shell history file availability
-                        </li>
-                        <li>
-                          <Badge variant="secondary" className="mr-2 font-mono">
-                            knowledgec
-                          </Badge>
-                          macOS app usage database access
-                        </li>
-                        <li>
-                          <Badge variant="secondary" className="mr-2 font-mono">
-                            biome
-                          </Badge>
-                          macOS activity streams access
-                        </li>
-                      </ul>
-                      <p className="text-sm text-neutral-600 dark:text-neutral-400">
-                        Each check reports what brewscope can read on your machine. Full Disk
-                        Access is needed for app usage tracking.
-                      </p>
+                    <div className="text-foreground/70 whitespace-pre-wrap break-all leading-relaxed">
+                      {JSON.stringify(doctorOutput, null, 2)}
                     </div>
-                  </TabsContent>
+                  </div>
+                  <div className="space-y-3">
+                    <h3 className="font-semibold">What it shows</h3>
+                    <ul className="space-y-2 text-sm">
+                      <li className="flex gap-3">
+                        <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">brew</Badge>
+                        <span className="text-foreground/70">Homebrew version and location</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">zsh_history</Badge>
+                        <span className="text-foreground/70">Shell history file availability</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">knowledgec</Badge>
+                        <span className="text-foreground/70">macOS app usage database access</span>
+                      </li>
+                      <li className="flex gap-3">
+                        <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">biome</Badge>
+                        <span className="text-foreground/70">macOS activity streams access</span>
+                      </li>
+                    </ul>
+                    <p className="text-sm text-foreground/60 pt-2">
+                      Each check reports what brewscope can read on your machine. Full Disk Access is needed for app usage tracking.
+                    </p>
+                  </div>
+                </TabsContent>
 
-                  <TabsContent value="describe" className="space-y-4">
-                    <div className="rounded-sm bg-black p-4 font-mono text-sm text-white dark:bg-white dark:text-black">
-                      <div className="mb-2 text-neutral-400 dark:text-neutral-600">
-                        $ brewscope describe
-                      </div>
-                      <div className="whitespace-pre-wrap break-all">
-                        {JSON.stringify(describeOutput, null, 2)}
+                <TabsContent value="describe" className="space-y-6 p-6">
+                  <div className="bg-background rounded border border-border/30 p-4 font-mono text-sm space-y-2 overflow-x-auto">
+                    <div className="text-brew/80">
+                      $ brewscope describe
+                    </div>
+                    <div className="text-foreground/70 whitespace-pre-wrap break-all leading-relaxed">
+                      {JSON.stringify(describeOutput, null, 2)}
+                    </div>
+                  </div>
+                  <div className="space-y-3">
+                    <h3 className="font-semibold">What it shows</h3>
+                    <p className="text-sm text-foreground/70">
+                      Machine-readable command tree for AI agents: every command, its options, schema version and exit codes. An agent can call <code className="bg-background/50 rounded px-2 py-1 font-mono text-xs border border-border/30">describe</code> once and know how to invoke every brewscope command.
+                    </p>
+                    <div className="rounded border border-border/30 bg-background/50 p-4 space-y-2 font-mono text-xs">
+                      <div className="font-semibold text-foreground/90 mb-3">Exit codes</div>
+                      <div className="space-y-1.5">
+                        <div><span className="text-brew">0</span> OK</div>
+                        <div><span className="text-brew">1</span> Internal error</div>
+                        <div><span className="text-brew">2</span> Usage error</div>
+                        <div><span className="text-brew">5</span> Environment problem</div>
                       </div>
                     </div>
-                    <div className="space-y-2">
-                      <h3 className="font-mono font-semibold">What it shows</h3>
-                      <p className="text-sm text-neutral-700 dark:text-neutral-300">
-                        Machine-readable command tree for AI agents: every command, its options,
-                        schema version and exit codes. An agent can call <code className="rounded bg-neutral-100 px-1 py-0.5 font-mono text-xs dark:bg-neutral-900">describe</code> once
-                        and know how to invoke every brewscope command.
-                      </p>
-                      <div className="rounded-sm bg-neutral-100 p-3 dark:bg-neutral-900">
-                        <p className="mb-2 font-mono text-xs font-semibold">Exit codes</p>
-                        <ul className="space-y-1 font-mono text-xs">
-                          <li>
-                            <span className="text-[#FF3C3C]">0</span> OK
-                          </li>
-                          <li>
-                            <span className="text-[#FF3C3C]">1</span> Internal error
-                          </li>
-                          <li>
-                            <span className="text-[#FF3C3C]">2</span> Usage error
-                          </li>
-                          <li>
-                            <span className="text-[#FF3C3C]">5</span> Environment problem
-                          </li>
-                        </ul>
-                      </div>
-                    </div>
-                  </TabsContent>
+                  </div>
+                </TabsContent>
 
-                  <TabsContent value="version" className="space-y-4">
-                    <div className="rounded-sm bg-black p-4 font-mono text-sm text-white dark:bg-white dark:text-black">
-                      <div className="mb-2 text-neutral-400 dark:text-neutral-600">
-                        $ brewscope version
-                      </div>
-                      <div className="whitespace-pre-wrap break-all">
-                        {JSON.stringify(
-                          {
-                            schema: 'brewscope.version/1',
-                            ok: true,
-                            generated_at: '2026-10-11T12:34:56Z',
-                            source: { brew: '7.0.7', capabilities: { brew: true, fda: true } },
-                            data: { version: '0.1.0' },
-                            truncated: false,
-                            next: null,
-                            warnings: [],
-                          },
-                          null,
-                          2
-                        )}
-                      </div>
+                <TabsContent value="version" className="space-y-6 p-6">
+                  <div className="bg-background rounded border border-border/30 p-4 font-mono text-sm space-y-2 overflow-x-auto">
+                    <div className="text-brew/80">
+                      $ brewscope version
                     </div>
-                    <div className="space-y-2">
-                      <h3 className="font-mono font-semibold">What it shows</h3>
-                      <p className="text-sm text-neutral-700 dark:text-neutral-300">
-                        Version number wrapped in the standard envelope. Every brewscope command
-                        uses the same envelope structure with schema, status, timestamp and data.
-                      </p>
+                    <div className="text-foreground/70 whitespace-pre-wrap break-all leading-relaxed">
+                      {JSON.stringify(
+                        {
+                          schema: 'brewscope.version/1',
+                          ok: true,
+                          generated_at: '2026-10-11T12:34:56Z',
+                          source: { brew: '7.0.7', capabilities: { brew: true, fda: true } },
+                          data: { version: '0.1.0' },
+                          truncated: false,
+                          next: null,
+                          warnings: [],
+                        },
+                        null,
+                        2
+                      )}
                     </div>
-                  </TabsContent>
-                </Tabs>
-              </div>
+                  </div>
+                  <div className="space-y-3">
+                    <h3 className="font-semibold">What it shows</h3>
+                    <p className="text-sm text-foreground/70">
+                      Version number wrapped in the standard envelope. Every brewscope command uses the same envelope structure with schema, status, timestamp and data.
+                    </p>
+                  </div>
+                </TabsContent>
+              </Tabs>
             </CardContent>
           </Card>
         </div>
 
-        <div className="mb-8">
-          <h2 className="mb-4 font-mono text-2xl font-bold text-black dark:text-white">
-            Output envelope
-          </h2>
-          <Card>
-            <CardContent className="p-6">
-              <p className="mb-4 text-sm text-neutral-700 dark:text-neutral-300">
-                Every brewscope command returns JSON with the same envelope structure, whether
-                invoked by a human or an AI agent.
+        {/* Output envelope */}
+        <div className="mb-12">
+          <h2 className="text-3xl font-bold mb-6">Output envelope</h2>
+          <Card className="bg-card/50 border-border/30 backdrop-blur-sm">
+            <CardContent className="p-6 space-y-4">
+              <p className="text-foreground/70">
+                Every brewscope command returns JSON with the same envelope structure, whether invoked by a human or an AI agent.
               </p>
-              <div className="space-y-3 rounded-sm bg-neutral-100 p-4 font-mono text-xs dark:bg-neutral-900">
+              <div className="space-y-2 rounded border border-border/30 bg-background/50 p-4 font-mono text-xs">
                 <div>
-                  <span className="text-[#FF3C3C]">schema</span>: versioned schema identifier
+                  <span className="text-brew">schema</span>: versioned schema identifier
                 </div>
                 <div>
-                  <span className="text-[#FF3C3C]">ok</span>: true on success, false on error
+                  <span className="text-brew">ok</span>: true on success, false on error
                 </div>
                 <div>
-                  <span className="text-[#FF3C3C]">generated_at</span>: ISO 8601 timestamp
+                  <span className="text-brew">generated_at</span>: ISO 8601 timestamp
                 </div>
                 <div>
-                  <span className="text-[#FF3C3C]">source</span>: brew version and capabilities
+                  <span className="text-brew">source</span>: brew version and capabilities
                 </div>
                 <div>
-                  <span className="text-[#FF3C3C]">data</span>: command-specific payload
+                  <span className="text-brew">data</span>: command-specific payload
                 </div>
                 <div>
-                  <span className="text-[#FF3C3C]">warnings</span>: non-fatal notices
+                  <span className="text-brew">warnings</span>: non-fatal notices
                 </div>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <div className="mb-8">
-          <h2 className="mb-4 font-mono text-2xl font-bold text-black dark:text-white">
-            Roadmap
-          </h2>
+        {/* Roadmap */}
+        <div>
+          <h2 className="text-3xl font-bold mb-6">Roadmap</h2>
           <div className="space-y-3">
-            <Card className="border-l-4 border-l-[#FF3C3C]">
+            <Card className="bg-card/50 border-l-2 border-l-brew border-border/30 backdrop-blur-sm">
               <CardContent className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
-                    <h3 className="font-mono font-semibold">M0</h3>
-                    <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                    <h3 className="font-semibold">M0</h3>
+                    <p className="text-sm text-foreground/60">
                       Output contract, describe, doctor
                     </p>
                   </div>
-                  <Badge className="bg-[#FF3C3C] font-mono text-white">Done</Badge>
+                  <Badge className="bg-brew text-brew-fg border-0">Done</Badge>
                 </div>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="bg-card/50 border-border/30 backdrop-blur-sm">
               <CardContent className="p-4">
-                <h3 className="mb-1 font-mono font-semibold">M1</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                <h3 className="font-semibold mb-1">M1</h3>
+                <p className="text-sm text-foreground/60">
                   Snapshot creation, inventory with filesystem attribution, orphan detection
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="bg-card/50 border-border/30 backdrop-blur-sm">
               <CardContent className="p-4">
-                <h3 className="mb-1 font-mono font-semibold">M2</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                <h3 className="font-semibold mb-1">M2</h3>
+                <p className="text-sm text-foreground/60">
                   Capability taxonomy, conflict detection (PATH shadowing, functional overlap)
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="bg-card/50 border-border/30 backdrop-blur-sm">
               <CardContent className="p-4">
-                <h3 className="mb-1 font-mono font-semibold">M3</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                <h3 className="font-semibold mb-1">M3</h3>
+                <p className="text-sm text-foreground/60">
                   Usage analysis: shell history, agent transcripts, app launches
                 </p>
               </CardContent>
             </Card>
-            <Card>
+            <Card className="bg-card/50 border-border/30 backdrop-blur-sm">
               <CardContent className="p-4">
-                <h3 className="mb-1 font-mono font-semibold">M4+</h3>
-                <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                <h3 className="font-semibold mb-1">M4+</h3>
+                <p className="text-sm text-foreground/60">
                   Recommendations, migration planning, optional MCP server mode
                 </p>
               </CardContent>
