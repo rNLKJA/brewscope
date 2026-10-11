@@ -70,21 +70,21 @@ export default function TourPage() {
 
           <Card className="bg-card/50 border-border/30 backdrop-blur-sm overflow-hidden">
             <CardHeader className="pb-3">
-              <CardTitle>Responsive design at 390px</CardTitle>
+              <CardTitle>Responsive design - Tablet view at 768px</CardTitle>
             </CardHeader>
             <CardContent className="p-0">
-              <div className="bg-background relative w-full overflow-hidden rounded-lg border border-border/30 max-w-sm">
+              <div className="bg-background relative w-full overflow-hidden rounded-lg border border-border/30">
                 <Image
-                  src="/screenshots/home-mobile-390.png"
-                  alt="Brewscope home page mobile view at 390px"
-                  width={390}
-                  height={844}
+                  src="/screenshots/home-tablet-768.png"
+                  alt="Brewscope home page tablet view at 768px"
+                  width={768}
+                  height={1662}
                   quality={85}
                   className="w-full h-auto"
                 />
               </div>
               <p className="text-sm text-foreground/60 p-4">
-                Fully responsive layout that scales gracefully on mobile devices without horizontal overflow.
+                Responsive layout adapts elegantly to tablet viewports with optimised spacing and navigation.
               </p>
             </CardContent>
           </Card>
@@ -92,7 +92,7 @@ export default function TourPage() {
           <div className="rounded-lg border border-border/30 bg-card/50 p-6 backdrop-blur-sm">
             <h2 className="mb-2 font-semibold">Generating screenshots</h2>
             <p className="mb-4 text-sm text-foreground/70">
-              These screenshots were captured using Playwright, ensuring consistent rendering across the three key viewport sizes:
+              These screenshots were captured using Playwright, ensuring consistent rendering across multiple viewport sizes:
             </p>
             <pre className="rounded border border-border/30 bg-background/50 p-4 font-mono text-xs space-y-1 overflow-x-auto">
               <code className="text-foreground/70 block">pnpm test:e2e -- screenshots</code>
