@@ -2,17 +2,26 @@
 
 A read-only terminal tool that explains what your Homebrew setup actually does on macOS. It shows which packages overlap or shadow each other, how often you and your AI agents use each one, and what a move to a new Mac needs to carry across.
 
-It is built for AI coding agents first (Claude Code, Codex, Cursor): JSON on stdout, stable schemas, meaningful exit codes, no prompts. It stays pleasant for humans too, since a terminal gets a table.
+**Live demo:** [brewscope.vercel.app](https://brewscope.vercel.app)
 
-> Status: early. M0 (the output contract, `describe`, `doctor`) is in place. See the roadmap below.
+[![CI](https://github.com/rNLKJA/brewscope/actions/workflows/ci.yml/badge.svg)](https://github.com/rNLKJA/brewscope/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](original/LICENSE)
+
+## Showcase
+
+**[Interactive demo](https://brewscope.vercel.app/demo)**: Explore brewscope commands with synthetic output in your browser.
+
+![Landing page](docs/showcase/landing.png)
+
+**[Take the guided tour](https://brewscope.vercel.app/tour)**: Walkthrough videos showing brewscope in action.
 
 ## Why
 
-`brew` knows what you installed. It doesn't know:
+Homebrew knows what you installed. It does not know:
 
-- that `python3` on your PATH comes from pyenv, while brew's two Pythons never win;
-- that two of your casks are both clipboard managers, and you've opened one of them twice this year;
-- that nine casks brew thinks are installed have no app any more, so a naive `brew bundle dump` would reinstall them on your next Mac.
+- that `python3` on your PATH comes from pyenv, while brew's two Pythons never win
+- that two of your casks are both clipboard managers, and you have opened one of them twice this year
+- that nine casks brew thinks are installed have no app any more, so a naive `brew bundle dump` would reinstall them on your next Mac
 
 brewscope reads the filesystem, your PATH and your usage history, so it can answer those questions.
 
@@ -75,11 +84,25 @@ Errors go to stderr as `{"ok": false, "error": {"code", "message", "remediation"
 
 ## Development
 
+The original Python CLI implementation is in `original/`.
+
+The web app (this revival) is in `web/`:
+
 ```bash
-uv sync
-uv run pytest
-uv run ruff check . && uv run ruff format --check .
+cd web
+pnpm install
+pnpm dev          # http://localhost:3840
+pnpm test
+pnpm run build
 ```
+
+## About
+
+Built for AI coding agents first (Claude Code, Codex, Cursor): JSON on stdout, stable schemas, meaningful exit codes, no prompts. It stays pleasant for humans too, since a terminal gets a table.
+
+This web app is a 2026 revival that demonstrates brewscope's capabilities in the browser with an interactive demo. The original terminal tool remains the primary implementation.
+
+Provenance: Original implementation at [github.com/rNLKJA/brewscope](https://github.com/rNLKJA/brewscope). Web revival built with Next.js.
 
 ## Licence
 
