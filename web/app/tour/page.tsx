@@ -33,7 +33,7 @@ export default function TourPage() {
                 <video
                   controls
                   className="h-full w-full"
-                  src="/showcase/tour-01.webm"
+                  src="/showcase/tour-01.mp4"
                   preload="metadata"
                 >
                   Your browser does not support the video tag.
@@ -55,7 +55,7 @@ export default function TourPage() {
                 <video
                   controls
                   className="h-full w-full"
-                  src="/showcase/tour-02.webm"
+                  src="/showcase/tour-02.mp4"
                   preload="metadata"
                 >
                   Your browser does not support the video tag.
@@ -76,7 +76,7 @@ export default function TourPage() {
                 <video
                   controls
                   className="h-full w-full"
-                  src="/showcase/tour-03.webm"
+                  src="/showcase/tour-03.mp4"
                   preload="metadata"
                 >
                   Your browser does not support the video tag.
