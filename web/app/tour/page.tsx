@@ -29,10 +29,15 @@ export default function TourPage() {
               <p className="text-neutral-700 dark:text-neutral-300">
                 Overview of brewscope: what it does, principles, roadmap and installation.
               </p>
-              <div className="rounded-sm bg-neutral-100 p-4 dark:bg-neutral-900">
-                <p className="font-mono text-sm text-neutral-600 dark:text-neutral-400">
-                  Video walkthrough will be available after running the showcase script.
-                </p>
+              <div className="aspect-video w-full overflow-hidden rounded-sm bg-neutral-100 dark:bg-neutral-900">
+                <video
+                  controls
+                  className="h-full w-full"
+                  src="/showcase/tour-01.webm"
+                  preload="metadata"
+                >
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </CardContent>
           </Card>
@@ -46,10 +51,15 @@ export default function TourPage() {
                 Exploring brewscope commands: doctor, describe, and version with their JSON output
                 envelopes.
               </p>
-              <div className="rounded-sm bg-neutral-100 p-4 dark:bg-neutral-900">
-                <p className="font-mono text-sm text-neutral-600 dark:text-neutral-400">
-                  Video walkthrough will be available after running the showcase script.
-                </p>
+              <div className="aspect-video w-full overflow-hidden rounded-sm bg-neutral-100 dark:bg-neutral-900">
+                <video
+                  controls
+                  className="h-full w-full"
+                  src="/showcase/tour-02.webm"
+                  preload="metadata"
+                >
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </CardContent>
           </Card>
@@ -62,10 +72,15 @@ export default function TourPage() {
               <p className="text-neutral-700 dark:text-neutral-300">
                 Navigating between the landing page and interactive demo.
               </p>
-              <div className="rounded-sm bg-neutral-100 p-4 dark:bg-neutral-900">
-                <p className="font-mono text-sm text-neutral-600 dark:text-neutral-400">
-                  Video walkthrough will be available after running the showcase script.
-                </p>
+              <div className="aspect-video w-full overflow-hidden rounded-sm bg-neutral-100 dark:bg-neutral-900">
+                <video
+                  controls
+                  className="h-full w-full"
+                  src="/showcase/tour-03.webm"
+                  preload="metadata"
+                >
+                  Your browser does not support the video tag.
+                </video>
               </div>
             </CardContent>
           </Card>
