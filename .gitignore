@@ -1,19 +1,2 @@
-# Python-generated files
-__pycache__/
-*.py[oc]
-build/
-dist/
-wheels/
-*.egg-info
-
-# Virtual environments
-.venv
-
-# Tool caches
-.pytest_cache/
-.ruff_cache/
-
-# Machine-specific output: never commit (hostnames, paths, dotfile names)
-snapshots/
-*.db
-.brewscope/
+.DS_Store
+node_modules/
