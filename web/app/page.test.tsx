@@ -5,7 +5,7 @@ import Home from '@/app/page'
 describe('Home page', () => {
   it('renders the brewscope heading', () => {
     render(<Home />)
-    expect(screen.getByText('brewscope')).toBeDefined()
+    expect(screen.getByRole('heading', { name: 'brewscope' })).toBeDefined()
   })
 
   it('displays the tagline', () => {
@@ -15,7 +15,7 @@ describe('Home page', () => {
 
   it('has a link to the interactive demo', () => {
     render(<Home />)
-    expect(screen.getByText('Interactive demo')).toBeDefined()
+    expect(screen.getByText('Try interactive demo')).toBeDefined()
   })
 
   it('displays the four principles', () => {

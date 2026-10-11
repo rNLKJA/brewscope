@@ -3,6 +3,91 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 
+function BrewscopeIllustration() {
+  return (
+    <svg
+      viewBox="0 0 400 350"
+      className="w-full max-w-sm"
+      aria-hidden="true"
+      role="img"
+    >
+      <title>Terminal window with brew bottle analysis</title>
+      {/* Terminal window frame */}
+      <rect
+        x="50"
+        y="50"
+        width="300"
+        height="250"
+        rx="8"
+        fill="currentColor"
+        opacity="0.05"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+
+      {/* Terminal title bar */}
+      <rect
+        x="50"
+        y="50"
+        width="300"
+        height="30"
+        rx="8"
+        fill="currentColor"
+        opacity="0.1"
+      />
+      <line x1="50" y1="80" x2="350" y2="80" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+
+      {/* Terminal dots */}
+      <circle cx="70" cy="65" r="4" fill="#FF3C3C" />
+      <circle cx="85" cy="65" r="4" fill="currentColor" opacity="0.3" />
+      <circle cx="100" cy="65" r="4" fill="currentColor" opacity="0.3" />
+
+      {/* Terminal content - command prompt */}
+      <text x="70" y="105" fontSize="12" fontFamily="monospace" fill="currentColor" opacity="0.6">
+        $ brewscope describe
+      </text>
+
+      {/* Brew bottles visualization */}
+      <g className="transition-colors duration-300">
+        {/* Bottle 1 */}
+        <rect x="80" y="130" width="30" height="50" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <rect x="85" y="125" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <text x="82" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">node</text>
+
+        {/* Bottle 2 */}
+        <rect x="130" y="140" width="30" height="40" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <rect x="135" y="135" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <text x="129" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">rust</text>
+
+        {/* Bottle 3 */}
+        <rect x="180" y="125" width="30" height="55" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <rect x="185" y="120" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <text x="176" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">python</text>
+
+        {/* Bottle 4 */}
+        <rect x="230" y="135" width="30" height="45" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <rect x="235" y="130" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <text x="233" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">git</text>
+
+        {/* Bottle 5 */}
+        <rect x="280" y="145" width="30" height="35" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <rect x="285" y="140" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <text x="280" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">jq</text>
+      </g>
+
+      {/* Status output */}
+      <g fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.5">
+        <text x="70" y="225">Installed: 247 formulae</text>
+        <text x="70" y="240">Casks: 83 applications</text>
+        <text x="70" y="255">Read-only scan complete</text>
+      </g>
+
+      {/* Cursor blink */}
+      <rect x="210" y="248" width="6" height="10" fill="#FF3C3C" opacity="0.7" />
+    </svg>
+  );
+}
+
 export default function Home() {
   return (
     <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: 'var(--font-sans)' }}>
@@ -30,26 +115,31 @@ export default function Home() {
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-brew/5 via-transparent to-transparent pointer-events-none" />
         <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 relative">
-          <div className="max-w-3xl">
-            <h1 className="text-7xl font-bold tracking-tight mb-4" style={{ fontFamily: 'var(--font-sans)' }}>
-              brewscope
-            </h1>
-            <p className="text-lg sm:text-xl text-foreground/80 leading-relaxed mb-8" style={{ fontFamily: 'var(--font-sans)' }}>
-              A read-only terminal tool that explains what your Homebrew setup actually does on macOS. Designed for AI agents first, pleasant for humans.
-            </p>
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/demo"
-                className="inline-flex items-center px-6 py-2.5 rounded-lg bg-brew text-brew-fg font-medium hover:bg-brew/90 transition-all duration-200 hover:shadow-lg hover:shadow-brew/20"
-              >
-                Try interactive demo
-              </Link>
-              <a
-                href="https://github.com/rNLKJA/brewscope"
-                className="inline-flex items-center px-6 py-2.5 rounded-lg border border-border/50 hover:border-brew/50 hover:bg-brew/5 transition-all duration-200"
-              >
-                View on GitHub
-              </a>
+          <div className="grid md:grid-cols-[2fr,1fr] gap-12 items-center">
+            <div>
+              <h1 className="text-7xl font-bold tracking-tight mb-4" style={{ fontFamily: 'var(--font-sans)' }}>
+                brewscope
+              </h1>
+              <p className="text-lg sm:text-xl text-foreground/80 leading-relaxed mb-8" style={{ fontFamily: 'var(--font-sans)' }}>
+                A read-only terminal tool that explains what your Homebrew setup actually does on macOS. Designed for AI agents first, pleasant for humans.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/demo"
+                  className="inline-flex items-center px-6 py-2.5 rounded-lg bg-brew text-brew-fg font-medium hover:bg-brew/90 transition-all duration-200 hover:shadow-lg hover:shadow-brew/20"
+                >
+                  Try interactive demo
+                </Link>
+                <a
+                  href="https://github.com/rNLKJA/brewscope"
+                  className="inline-flex items-center px-6 py-2.5 rounded-lg border border-border/50 hover:border-brew/50 hover:bg-brew/5 transition-all duration-200"
+                >
+                  View on GitHub
+                </a>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <BrewscopeIllustration />
             </div>
           </div>
         </div>
