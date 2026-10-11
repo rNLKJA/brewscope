@@ -1,104 +1,104 @@
 import Link from 'next/link'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import Image from 'next/image'
 
 export default function TourPage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-black">
-      <div className="mx-auto max-w-4xl px-6 py-12">
-        <header className="mb-8">
+    <div className="min-h-screen bg-background text-foreground">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-8">
+        {/* Header */}
+        <div className="mb-12">
           <Link
             href="/"
-            className="mb-4 inline-block font-mono text-sm text-neutral-600 hover:text-[#FF3C3C] dark:text-neutral-400"
+            className="inline-flex items-center gap-1 text-sm text-foreground/60 hover:text-brew transition-colors mb-6"
           >
-            ← Back
+            ← Back to home
           </Link>
-          <h1 className="mb-2 font-mono text-4xl font-bold tracking-tight text-black dark:text-white">
-            Guided tour
-          </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400">
-            Walkthroughs of brewscope features recorded from the live site
-          </p>
-        </header>
-
-        <div className="space-y-8">
-          <Card className="border-2 border-black dark:border-white">
-            <CardHeader>
-              <CardTitle className="font-mono text-xl">01. Landing page</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-neutral-700 dark:text-neutral-300">
-                Overview of brewscope: what it does, principles, roadmap and installation.
-              </p>
-              <div className="aspect-video w-full overflow-hidden rounded-sm bg-neutral-100 dark:bg-neutral-900">
-                <video
-                  controls
-                  className="h-full w-full"
-                  src="/showcase/tour-01.mp4"
-                  preload="metadata"
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-2 border-black dark:border-white">
-            <CardHeader>
-              <CardTitle className="font-mono text-xl">02. Interactive demo</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-neutral-700 dark:text-neutral-300">
-                Exploring brewscope commands: doctor, describe, and version with their JSON output
-                envelopes.
-              </p>
-              <div className="aspect-video w-full overflow-hidden rounded-sm bg-neutral-100 dark:bg-neutral-900">
-                <video
-                  controls
-                  className="h-full w-full"
-                  src="/showcase/tour-02.mp4"
-                  preload="metadata"
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </CardContent>
-          </Card>
-
-          <Card className="border-2 border-black dark:border-white">
-            <CardHeader>
-              <CardTitle className="font-mono text-xl">03. Navigation flow</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <p className="text-neutral-700 dark:text-neutral-300">
-                Navigating between the landing page and interactive demo.
-              </p>
-              <div className="aspect-video w-full overflow-hidden rounded-sm bg-neutral-100 dark:bg-neutral-900">
-                <video
-                  controls
-                  className="h-full w-full"
-                  src="/showcase/tour-03.mp4"
-                  preload="metadata"
-                >
-                  Your browser does not support the video tag.
-                </video>
-              </div>
-            </CardContent>
-          </Card>
-
-          <div className="rounded-sm border-2 border-[#FF3C3C] bg-white p-6 dark:bg-black">
-            <h2 className="mb-2 font-mono text-lg font-bold">Running the showcase</h2>
-            <p className="mb-4 text-sm text-neutral-700 dark:text-neutral-300">
-              Tour videos are recorded by a Playwright script that runs against the production site:
+          <div>
+            <h1 className="text-5xl font-bold tracking-tight mb-3">
+              Design tour
+            </h1>
+            <p className="text-lg text-foreground/70">
+              Screenshots showcasing the redesigned brewscope interface
             </p>
-            <pre className="rounded-sm bg-neutral-100 p-4 font-mono text-sm dark:bg-neutral-900">
-              <code>cd web && pnpm showcase</code>
+          </div>
+        </div>
+
+        {/* Screenshots */}
+        <div className="space-y-8">
+          <Card className="bg-card/50 border-border/30 backdrop-blur-sm overflow-hidden">
+            <CardHeader className="pb-3">
+              <CardTitle>Home page - Light mode</CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="bg-background relative w-full overflow-hidden rounded-lg border border-border/30">
+                <Image
+                  src="/screenshots/home-light-1440.png"
+                  alt="Brewscope home page in light mode at 1440px"
+                  width={1440}
+                  height={900}
+                  quality={85}
+                  className="w-full h-auto"
+                />
+              </div>
+              <p className="text-sm text-foreground/60 p-4">
+                Clean, modern hero section with warm amber accents and clear call-to-action buttons.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-card/50 border-border/30 backdrop-blur-sm overflow-hidden">
+            <CardHeader className="pb-3">
+              <CardTitle>Home page - Dark mode</CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="bg-background relative w-full overflow-hidden rounded-lg border border-border/30">
+                <Image
+                  src="/screenshots/home-dark-1440.png"
+                  alt="Brewscope home page in dark mode at 1440px"
+                  width={1440}
+                  height={900}
+                  quality={85}
+                  className="w-full h-auto"
+                />
+              </div>
+              <p className="text-sm text-foreground/60 p-4">
+                Dark-first design with soft amber accents, excellent contrast, and smooth transitions between sections.
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card className="bg-card/50 border-border/30 backdrop-blur-sm overflow-hidden">
+            <CardHeader className="pb-3">
+              <CardTitle>Responsive design at 390px</CardTitle>
+            </CardHeader>
+            <CardContent className="p-0">
+              <div className="bg-background relative w-full overflow-hidden rounded-lg border border-border/30 max-w-sm">
+                <Image
+                  src="/screenshots/home-mobile-390.png"
+                  alt="Brewscope home page mobile view at 390px"
+                  width={390}
+                  height={844}
+                  quality={85}
+                  className="w-full h-auto"
+                />
+              </div>
+              <p className="text-sm text-foreground/60 p-4">
+                Fully responsive layout that scales gracefully on mobile devices without horizontal overflow.
+              </p>
+            </CardContent>
+          </Card>
+
+          <div className="rounded-lg border border-border/30 bg-card/50 p-6 backdrop-blur-sm">
+            <h2 className="mb-2 font-semibold">Generating screenshots</h2>
+            <p className="mb-4 text-sm text-foreground/70">
+              These screenshots were captured using Playwright, ensuring consistent rendering across the three key viewport sizes:
+            </p>
+            <pre className="rounded border border-border/30 bg-background/50 p-4 font-mono text-xs space-y-1 overflow-x-auto">
+              <code className="text-foreground/70 block">pnpm test:e2e -- screenshots</code>
             </pre>
-            <p className="mt-4 text-sm text-neutral-600 dark:text-neutral-400">
-              The script captures each walkthrough, verifies every step it shows, and saves videos to{' '}
-              <code className="rounded bg-neutral-100 px-1 py-0.5 font-mono text-xs dark:bg-neutral-900">
-                docs/showcase/
-              </code>
-              .
+            <p className="mt-4 text-sm text-foreground/60">
+              Each screenshot verifies the complete design system, typography hierarchy, color palette, spacing, and responsive behaviour.
             </p>
           </div>
         </div>
