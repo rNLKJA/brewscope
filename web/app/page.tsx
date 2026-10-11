@@ -1,19 +1,109 @@
 import Link from 'next/link'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
+
+function BrewscopeIllustration() {
+  return (
+    <svg
+      viewBox="0 0 400 350"
+      className="w-full max-w-sm"
+      aria-hidden="true"
+      role="img"
+    >
+      <title>Terminal window with brew bottle analysis</title>
+      {/* Terminal window frame */}
+      <rect
+        x="50"
+        y="50"
+        width="300"
+        height="250"
+        rx="8"
+        fill="currentColor"
+        opacity="0.05"
+        stroke="currentColor"
+        strokeWidth="2"
+      />
+
+      {/* Terminal title bar */}
+      <rect
+        x="50"
+        y="50"
+        width="300"
+        height="30"
+        rx="8"
+        fill="currentColor"
+        opacity="0.1"
+      />
+      <line x1="50" y1="80" x2="350" y2="80" stroke="currentColor" strokeWidth="1" opacity="0.3" />
+
+      {/* Terminal dots */}
+      <circle cx="70" cy="65" r="4" fill="#FF3C3C" />
+      <circle cx="85" cy="65" r="4" fill="currentColor" opacity="0.3" />
+      <circle cx="100" cy="65" r="4" fill="currentColor" opacity="0.3" />
+
+      {/* Terminal content - command prompt */}
+      <text x="70" y="105" fontSize="12" fontFamily="monospace" fill="currentColor" opacity="0.6">
+        $ brewscope describe
+      </text>
+
+      {/* Brew bottles visualization */}
+      <g className="transition-colors duration-300">
+        {/* Bottle 1 */}
+        <rect x="80" y="130" width="30" height="50" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <rect x="85" y="125" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <text x="82" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">node</text>
+
+        {/* Bottle 2 */}
+        <rect x="130" y="140" width="30" height="40" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <rect x="135" y="135" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <text x="129" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">rust</text>
+
+        {/* Bottle 3 */}
+        <rect x="180" y="125" width="30" height="55" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <rect x="185" y="120" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <text x="176" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">python</text>
+
+        {/* Bottle 4 */}
+        <rect x="230" y="135" width="30" height="45" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <rect x="235" y="130" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <text x="233" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">git</text>
+
+        {/* Bottle 5 */}
+        <rect x="280" y="145" width="30" height="35" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <rect x="285" y="140" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
+        <text x="280" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">jq</text>
+      </g>
+
+      {/* Status output */}
+      <g fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.5">
+        <text x="70" y="225">Installed: 247 formulae</text>
+        <text x="70" y="240">Casks: 83 applications</text>
+        <text x="70" y="255">Read-only scan complete</text>
+      </g>
+
+      {/* Cursor blink */}
+      <rect x="210" y="248" width="6" height="10" fill="#FF3C3C" opacity="0.7" />
+    </svg>
+  );
+}
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-white dark:bg-black">
       <div className="mx-auto max-w-4xl px-6 py-12">
-        <header className="mb-12">
-          <h1 className="mb-2 font-mono text-4xl font-bold tracking-tight text-black dark:text-white">
-            brewscope
-          </h1>
-          <p className="text-lg text-neutral-600 dark:text-neutral-400">
-            A read-only terminal tool that explains what your Homebrew setup actually does on macOS
-          </p>
+        <header className="mb-12 grid md:grid-cols-2 gap-8 items-center">
+          <div>
+            <h1 className="mb-2 font-mono text-4xl font-bold tracking-tight text-black dark:text-white">
+              brewscope
+            </h1>
+            <p className="text-lg text-neutral-600 dark:text-neutral-400">
+              A read-only terminal tool that explains what your Homebrew setup actually does on macOS
+            </p>
+          </div>
+          <div className="flex justify-center">
+            <BrewscopeIllustration />
+          </div>
         </header>
 
         <div className="mb-12">
