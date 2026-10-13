@@ -56,7 +56,7 @@ export default function Home() {
           <div className="mx-auto grid max-w-6xl items-center gap-16 px-4 pt-32 pb-96 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:pt-48 lg:pb-[36rem]">
             {/* Hero content */}
             <div>
-              <p className="text-kicker text-brew">Real-time brewing data</p>
+              <p className="text-kicker text-brew">Homebrew inspector</p>
               <h1 className="mt-4 font-display text-display leading-[1.02]">
                 A <span className="text-brew">read-only</span> terminal tool for Homebrew on macOS.
               </h1>
