@@ -18,7 +18,6 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     if (stored) return stored
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
   })
-  const [mounted, setMounted] = useState(false)
 
   const applyTheme = (theme: Theme) => {
     const html = document.documentElement
@@ -30,23 +29,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
-
-  useEffect(() => {
-    if (mounted) {
-      applyTheme(theme)
-    }
-  }, [theme, mounted])
+    applyTheme(theme)
+  }, [theme])
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme)
     localStorage.setItem('theme', newTheme)
     applyTheme(newTheme)
-  }
-
-  if (!mounted) {
-    return <>{children}</>
   }
 
   return (
