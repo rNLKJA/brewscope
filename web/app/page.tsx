@@ -242,7 +242,7 @@ export default function Home() {
             {/* Demo card */}
             <Link
               href="/demo"
-              className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-6 shadow-md transition-all duration-200 hover:border-brew/50 hover:shadow-lg sm:gap-6 sm:p-8"
+              className="group flex min-w-0 items-center gap-4 rounded-2xl border border-border bg-card p-6 shadow-md transition-all duration-200 hover:border-brew/50 hover:shadow-lg sm:gap-6 sm:p-8"
             >
               <Terminal className="size-10 shrink-0 text-brew" aria-hidden="true" />
               <span className="min-w-0 flex-1">
@@ -258,7 +258,7 @@ export default function Home() {
             </Link>
 
             {/* Install card */}
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-md sm:p-8">
+            <div className="min-w-0 rounded-2xl border border-border bg-card p-6 shadow-md sm:p-8">
               <h3 className="font-display text-xl font-semibold">Install CLI</h3>
               <pre className="mt-4 overflow-x-auto rounded border border-border bg-muted/50 p-4 font-mono text-sm text-foreground/70">
                 <code>uv tool install git+https://github.com/rNLKJA/brewscope</code>
