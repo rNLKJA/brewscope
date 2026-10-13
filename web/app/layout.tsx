@@ -36,6 +36,14 @@ export const metadata: Metadata = {
     siteName: 'brewscope',
     title: 'brewscope: read-only Homebrew insights',
     description: 'A read-only terminal tool that explains what your Homebrew setup actually does on macOS.',
+    images: [
+      {
+        url: '/og-image.svg',
+        width: 1200,
+        height: 630,
+        alt: 'brewscope: A read-only terminal tool for Homebrew on macOS',
+      },
+    ],
   },
 }
 
