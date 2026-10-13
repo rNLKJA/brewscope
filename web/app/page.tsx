@@ -50,7 +50,7 @@ export default function Home() {
           {/* Warm glow */}
           <div
             aria-hidden="true"
-            className="absolute -top-40 left-1/2 -z-10 size-[42rem] -translate-x-1/2 rounded-full bg-brew/15 blur-3xl"
+            className="absolute -top-40 left-1/2 -z-10 size-[min(42rem,100vw)] -translate-x-1/2 rounded-full bg-brew/15 blur-3xl"
           />
 
           <div className="mx-auto grid max-w-6xl items-center gap-16 px-4 pt-16 pb-24 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:pt-24 lg:pb-32">
@@ -238,14 +238,14 @@ export default function Home() {
             Get started.
           </h2>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <div className="mt-12 grid gap-6 sm:grid-cols-1 md:grid-cols-2">
             {/* Demo card */}
             <Link
               href="/demo"
-              className="group flex items-center gap-6 rounded-2xl border border-border bg-card p-8 shadow-md transition-all duration-200 hover:border-brew/50 hover:shadow-lg"
+              className="group flex items-center gap-4 rounded-2xl border border-border bg-card p-6 shadow-md transition-all duration-200 hover:border-brew/50 hover:shadow-lg sm:gap-6 sm:p-8"
             >
               <Terminal className="size-10 shrink-0 text-brew" aria-hidden="true" />
-              <span>
+              <span className="min-w-0 flex-1">
                 <span className="block font-display text-xl font-semibold group-hover:text-brew transition-colors duration-200">Interactive demo</span>
                 <span className="mt-1 block text-sm text-muted-foreground">
                   Try brewscope in your browser without installing anything.
@@ -258,7 +258,7 @@ export default function Home() {
             </Link>
 
             {/* Install card */}
-            <div className="rounded-2xl border border-border bg-card p-8 shadow-md">
+            <div className="rounded-2xl border border-border bg-card p-6 shadow-md sm:p-8">
               <h3 className="font-display text-xl font-semibold">Install CLI</h3>
               <pre className="mt-4 overflow-x-auto rounded border border-border bg-muted/50 p-4 font-mono text-sm text-foreground/70">
                 <code>uv tool install git+https://github.com/rNLKJA/brewscope</code>
