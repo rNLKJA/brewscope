@@ -65,6 +65,10 @@ export default function Home() {
                 cask you actually open.
               </p>
 
+              <p className="mt-6 max-w-xl text-base leading-[1.65] text-foreground/80">
+                I built brewscope because Homebrew knows what you installed, but it doesn&apos;t know what you actually use or what conflicts with what. When you move to a new Mac, you want to carry across what matters, not reinstall nine casks that have no app any more.
+              </p>
+
               {/* CTA buttons */}
               <div className="mt-14 flex flex-wrap gap-4">
                 <Link
@@ -319,6 +323,12 @@ export default function Home() {
                 . Future milestones will add snapshot creation, inventory, conflict detection, usage analysis
                 and migration planning.
               </p>
+              <div className="border-t border-border/50 pt-5">
+                <h3 className="text-sm font-semibold text-foreground mb-3">What I learned</h3>
+                <p className="text-sm leading-[1.65] text-muted-foreground">
+                  This project taught me how to design for both humans and AI agents at once. The envelope pattern with stable schemas and meaningful exit codes makes agent integration predictable, while format autodetection (table on a TTY, JSON when piped) keeps it usable for interactive work. I also learned that read-only constraints force better design: when you can&apos;t fix problems automatically, your diagnostics and recommendations have to be clear and actionable.
+                </p>
+              </div>
               <div className="border-t border-border/50 pt-4">
                 <p className="text-sm text-muted-foreground">
                   <strong className="text-foreground">Provenance.</strong> This web app is a 2026 revival of a
@@ -331,15 +341,7 @@ export default function Home() {
                   >
                     github.com/rNLKJA/brewscope
                   </a>
-                  . Built with Next.js.{' '}
-                  <a
-                    href="https://rin.contact"
-                    className="text-brew hover:underline"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    rin.contact
-                  </a>
+                  . Built with Next.js.
                 </p>
               </div>
             </div>
@@ -352,7 +354,16 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground sm:flex-row">
             <p>
-              Built with Next.js ·{' '}
+              <a
+                href="https://rin.contact"
+                className="transition-colors hover:text-brew"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Made by Rin in Adelaide
+              </a>
+            </p>
+            <p>
               <a
                 href="https://github.com/rNLKJA/brewscope"
                 className="transition-colors hover:text-brew"
@@ -360,11 +371,6 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 Source on GitHub
-              </a>
-            </p>
-            <p>
-              <a href="https://rin.contact" className="transition-colors hover:text-brew" target="_blank" rel="noopener noreferrer">
-                rin.contact
               </a>
             </p>
           </div>

@@ -1,4 +1,33 @@
+'use client'
+
+import { useEffect, useState, useRef } from 'react'
+
 export function FloatingTerminalCard() {
+  const [output, setOutput] = useState<string[]>([])
+  const [showCursor, setShowCursor] = useState(false)
+  const hasTyped = useRef(false)
+
+  useEffect(() => {
+    if (hasTyped.current) return
+    hasTyped.current = true
+
+    const lines = [
+      { text: 'Formulae: 247 installed', delay: 300 },
+      { text: 'Casks: 83 applications', delay: 600 },
+      { text: '✓ read-only scan complete', delay: 900 },
+    ]
+
+    lines.forEach(({ text, delay }) => {
+      setTimeout(() => {
+        setOutput((prev) => [...prev, text])
+      }, delay)
+    })
+
+    setTimeout(() => {
+      setShowCursor(true)
+    }, 1200)
+  }, [])
+
   return (
     <div className="absolute -bottom-6 -right-2 sm:-right-8 z-10 rotate-2 animate-float">
       <div className="relative group">
@@ -50,20 +79,30 @@ export function FloatingTerminalCard() {
               <span className="text-foreground/90">brewscope describe</span>
             </div>
             <div className="text-foreground/70 pl-4 space-y-0.5">
-              <div>Formulae: <span className="text-brew font-medium">247</span> installed</div>
-              <div>Casks: <span className="text-brew font-medium">83</span> applications</div>
+              {output.slice(0, 2).map((line, i) => {
+                const [label, value] = line.split(': ')
+                return (
+                  <div key={i}>
+                    {label}: <span className="text-brew font-medium">{value}</span>
+                  </div>
+                )
+              })}
             </div>
-            <div className="flex items-center gap-2 pt-1 pl-4">
-              <span className="text-dracula-green text-[10px]">✓</span>
-              <span className="text-foreground/60 text-[10px]">read-only scan complete</span>
-            </div>
-            <div className="flex items-center gap-1 pl-4 pt-0.5">
-              <span className="text-brew">$</span>
-              <span className="w-1.5 h-3 bg-brew/70 animate-pulse" />
-            </div>
+            {output[2] && (
+              <div className="flex items-center gap-2 pt-1 pl-4">
+                <span className="text-dracula-green text-[10px]">✓</span>
+                <span className="text-foreground/60 text-[10px]">{output[2].replace('✓ ', '')}</span>
+              </div>
+            )}
+            {showCursor && (
+              <div className="flex items-center gap-1 pl-4 pt-0.5">
+                <span className="text-brew">$</span>
+                <span className="w-1.5 h-3 bg-brew/70 animate-pulse" />
+              </div>
+            )}
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }

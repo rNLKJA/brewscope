@@ -30,13 +30,10 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
     return 'light'
   })
-  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
-    // Apply the theme on mount and mark as mounted
+    // Apply the theme on mount
     applyTheme(theme)
-    // Use queueMicrotask to avoid setState in effect warning
-    queueMicrotask(() => setMounted(true))
   }, [theme])
 
   const setTheme = (newTheme: Theme) => {

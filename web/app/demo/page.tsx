@@ -124,6 +124,13 @@ const describeOutput = {
 
 export default function DemoPage() {
   const [activeCommand, setActiveCommand] = useState<string>('doctor')
+  const [isLoading, setIsLoading] = useState(false)
+
+  const handleCommandChange = (value: string) => {
+    setIsLoading(true)
+    setActiveCommand(value)
+    setTimeout(() => setIsLoading(false), 400)
+  }
 
   return (
     <div className="min-h-screen bg-background text-foreground">
@@ -153,7 +160,7 @@ export default function DemoPage() {
               <CardTitle className="text-sm font-mono">Terminal</CardTitle>
             </CardHeader>
             <CardContent className="p-0">
-              <Tabs value={activeCommand} onValueChange={setActiveCommand} className="w-full">
+              <Tabs value={activeCommand} onValueChange={handleCommandChange} className="w-full">
                 <div className="border-b border-border/30 bg-background/30 px-6 py-0">
                   <TabsList className="grid w-full grid-cols-3 gap-1 bg-transparent h-auto p-0 mb-0">
                     <TabsTrigger value="doctor" className="rounded-none border-b-2 border-transparent data-[state=active]:border-brew text-sm font-mono py-3 px-0 hover:bg-background/20">
@@ -168,96 +175,110 @@ export default function DemoPage() {
                   </TabsList>
                 </div>
 
-                <TabsContent value="doctor" className="space-y-6 p-6">
-                  <div className="bg-background rounded border border-border/30 p-4 font-mono text-sm space-y-2 overflow-x-auto">
-                    <div className="text-brew/80">
-                      $ brewscope doctor
-                    </div>
-                    <div className="text-foreground/70 whitespace-pre-wrap break-all leading-relaxed">
-                      {JSON.stringify(doctorOutput, null, 2)}
+                {isLoading && (
+                  <div className="flex items-center justify-center p-12">
+                    <div className="flex items-center gap-3">
+                      <div className="size-2 rounded-full bg-brew animate-pulse" style={{ animationDelay: '0ms' }} />
+                      <div className="size-2 rounded-full bg-brew animate-pulse" style={{ animationDelay: '150ms' }} />
+                      <div className="size-2 rounded-full bg-brew animate-pulse" style={{ animationDelay: '300ms' }} />
                     </div>
                   </div>
-                  <div className="space-y-3">
-                    <h3 className="font-semibold">What it shows</h3>
-                    <ul className="space-y-2 text-sm">
-                      <li className="flex gap-3">
-                        <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">brew</Badge>
-                        <span className="text-foreground/70">Homebrew version and location</span>
-                      </li>
-                      <li className="flex gap-3">
-                        <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">zsh_history</Badge>
-                        <span className="text-foreground/70">Shell history file availability</span>
-                      </li>
-                      <li className="flex gap-3">
-                        <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">knowledgec</Badge>
-                        <span className="text-foreground/70">macOS app usage database access</span>
-                      </li>
-                      <li className="flex gap-3">
-                        <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">biome</Badge>
-                        <span className="text-foreground/70">macOS activity streams access</span>
-                      </li>
-                    </ul>
-                    <p className="text-sm text-foreground/60 pt-2">
-                      Each check reports what brewscope can read on your machine. Full Disk Access is needed for app usage tracking.
-                    </p>
-                  </div>
-                </TabsContent>
+                )}
 
-                <TabsContent value="describe" className="space-y-6 p-6">
-                  <div className="bg-background rounded border border-border/30 p-4 font-mono text-sm space-y-2 overflow-x-auto">
-                    <div className="text-brew/80">
-                      $ brewscope describe
-                    </div>
-                    <div className="text-foreground/70 whitespace-pre-wrap break-all leading-relaxed">
-                      {JSON.stringify(describeOutput, null, 2)}
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    <h3 className="font-semibold">What it shows</h3>
-                    <p className="text-sm text-foreground/70">
-                      Machine-readable command tree for AI agents: every command, its options, schema version and exit codes. An agent can call <code className="bg-background/50 rounded px-2 py-1 font-mono text-xs border border-border/30">describe</code> once and know how to invoke every brewscope command.
-                    </p>
-                    <div className="rounded border border-border/30 bg-background/50 p-4 space-y-2 font-mono text-xs">
-                      <div className="font-semibold text-foreground/90 mb-3">Exit codes</div>
-                      <div className="space-y-1.5">
-                        <div><span className="text-brew">0</span> OK</div>
-                        <div><span className="text-brew">1</span> Internal error</div>
-                        <div><span className="text-brew">2</span> Usage error</div>
-                        <div><span className="text-brew">5</span> Environment problem</div>
+                {!isLoading && (
+                  <>
+                    <TabsContent value="doctor" className="space-y-6 p-6">
+                      <div className="bg-background rounded border border-border/30 p-4 font-mono text-sm space-y-2 overflow-x-auto">
+                        <div className="text-brew/80">
+                          $ brewscope doctor
+                        </div>
+                        <div className="text-foreground/70 whitespace-pre-wrap break-all leading-relaxed">
+                          {JSON.stringify(doctorOutput, null, 2)}
+                        </div>
                       </div>
-                    </div>
-                  </div>
-                </TabsContent>
+                      <div className="space-y-3">
+                        <h3 className="font-semibold">What it shows</h3>
+                        <ul className="space-y-2 text-sm">
+                          <li className="flex gap-3">
+                            <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">brew</Badge>
+                            <span className="text-foreground/70">Homebrew version and location</span>
+                          </li>
+                          <li className="flex gap-3">
+                            <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">zsh_history</Badge>
+                            <span className="text-foreground/70">Shell history file availability</span>
+                          </li>
+                          <li className="flex gap-3">
+                            <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">knowledgec</Badge>
+                            <span className="text-foreground/70">macOS app usage database access</span>
+                          </li>
+                          <li className="flex gap-3">
+                            <Badge className="bg-brew/20 text-brew border-0 whitespace-nowrap h-fit">biome</Badge>
+                            <span className="text-foreground/70">macOS activity streams access</span>
+                          </li>
+                        </ul>
+                        <p className="text-sm text-foreground/60 pt-2">
+                          Each check reports what brewscope can read on your machine. Full Disk Access is needed for app usage tracking.
+                        </p>
+                      </div>
+                    </TabsContent>
 
-                <TabsContent value="version" className="space-y-6 p-6">
-                  <div className="bg-background rounded border border-border/30 p-4 font-mono text-sm space-y-2 overflow-x-auto">
-                    <div className="text-brew/80">
-                      $ brewscope version
-                    </div>
-                    <div className="text-foreground/70 whitespace-pre-wrap break-all leading-relaxed">
-                      {JSON.stringify(
-                        {
-                          schema: 'brewscope.version/1',
-                          ok: true,
-                          generated_at: '2026-10-11T12:34:56Z',
-                          source: { brew: '7.0.7', capabilities: { brew: true, fda: true } },
-                          data: { version: '0.1.0' },
-                          truncated: false,
-                          next: null,
-                          warnings: [],
-                        },
-                        null,
-                        2
-                      )}
-                    </div>
-                  </div>
-                  <div className="space-y-3">
-                    <h3 className="font-semibold">What it shows</h3>
-                    <p className="text-sm text-foreground/70">
-                      Version number wrapped in the standard envelope. Every brewscope command uses the same envelope structure with schema, status, timestamp and data.
-                    </p>
-                  </div>
-                </TabsContent>
+                    <TabsContent value="describe" className="space-y-6 p-6">
+                      <div className="bg-background rounded border border-border/30 p-4 font-mono text-sm space-y-2 overflow-x-auto">
+                        <div className="text-brew/80">
+                          $ brewscope describe
+                        </div>
+                        <div className="text-foreground/70 whitespace-pre-wrap break-all leading-relaxed">
+                          {JSON.stringify(describeOutput, null, 2)}
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <h3 className="font-semibold">What it shows</h3>
+                        <p className="text-sm text-foreground/70">
+                          Machine-readable command tree for AI agents: every command, its options, schema version and exit codes. An agent can call <code className="bg-background/50 rounded px-2 py-1 font-mono text-xs border border-border/30">describe</code> once and know how to invoke every brewscope command.
+                        </p>
+                        <div className="rounded border border-border/30 bg-background/50 p-4 space-y-2 font-mono text-xs">
+                          <div className="font-semibold text-foreground/90 mb-3">Exit codes</div>
+                          <div className="space-y-1.5">
+                            <div><span className="text-brew">0</span> OK</div>
+                            <div><span className="text-brew">1</span> Internal error</div>
+                            <div><span className="text-brew">2</span> Usage error</div>
+                            <div><span className="text-brew">5</span> Environment problem</div>
+                          </div>
+                        </div>
+                      </div>
+                    </TabsContent>
+
+                    <TabsContent value="version" className="space-y-6 p-6">
+                      <div className="bg-background rounded border border-border/30 p-4 font-mono text-sm space-y-2 overflow-x-auto">
+                        <div className="text-brew/80">
+                          $ brewscope version
+                        </div>
+                        <div className="text-foreground/70 whitespace-pre-wrap break-all leading-relaxed">
+                          {JSON.stringify(
+                            {
+                              schema: 'brewscope.version/1',
+                              ok: true,
+                              generated_at: '2026-10-11T12:34:56Z',
+                              source: { brew: '7.0.7', capabilities: { brew: true, fda: true } },
+                              data: { version: '0.1.0' },
+                              truncated: false,
+                              next: null,
+                              warnings: [],
+                            },
+                            null,
+                            2
+                          )}
+                        </div>
+                      </div>
+                      <div className="space-y-3">
+                        <h3 className="font-semibold">What it shows</h3>
+                        <p className="text-sm text-foreground/70">
+                          Version number wrapped in the standard envelope. Every brewscope command uses the same envelope structure with schema, status, timestamp and data.
+                        </p>
+                      </div>
+                    </TabsContent>
+                  </>
+                )}
               </Tabs>
             </CardContent>
           </Card>
