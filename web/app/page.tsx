@@ -1,109 +1,37 @@
 import Link from 'next/link'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
-
-function BrewscopeIllustration() {
-  return (
-    <svg
-      viewBox="0 0 400 350"
-      className="w-full max-w-sm"
-      aria-hidden="true"
-      role="img"
-    >
-      <title>Terminal window with brew bottle analysis</title>
-      {/* Terminal window frame */}
-      <rect
-        x="50"
-        y="50"
-        width="300"
-        height="250"
-        rx="8"
-        fill="currentColor"
-        opacity="0.05"
-        stroke="currentColor"
-        strokeWidth="2"
-      />
-
-      {/* Terminal title bar */}
-      <rect
-        x="50"
-        y="50"
-        width="300"
-        height="30"
-        rx="8"
-        fill="currentColor"
-        opacity="0.1"
-      />
-      <line x1="50" y1="80" x2="350" y2="80" stroke="currentColor" strokeWidth="1" opacity="0.3" />
-
-      {/* Terminal dots */}
-      <circle cx="70" cy="65" r="4" fill="#FF3C3C" />
-      <circle cx="85" cy="65" r="4" fill="currentColor" opacity="0.3" />
-      <circle cx="100" cy="65" r="4" fill="currentColor" opacity="0.3" />
-
-      {/* Terminal content - command prompt */}
-      <text x="70" y="105" fontSize="12" fontFamily="monospace" fill="currentColor" opacity="0.6">
-        $ brewscope describe
-      </text>
-
-      {/* Brew bottles visualization */}
-      <g className="transition-colors duration-300">
-        {/* Bottle 1 */}
-        <rect x="80" y="130" width="30" height="50" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
-        <rect x="85" y="125" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
-        <text x="82" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">node</text>
-
-        {/* Bottle 2 */}
-        <rect x="130" y="140" width="30" height="40" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
-        <rect x="135" y="135" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
-        <text x="129" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">rust</text>
-
-        {/* Bottle 3 */}
-        <rect x="180" y="125" width="30" height="55" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
-        <rect x="185" y="120" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
-        <text x="176" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">python</text>
-
-        {/* Bottle 4 */}
-        <rect x="230" y="135" width="30" height="45" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
-        <rect x="235" y="130" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
-        <text x="233" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">git</text>
-
-        {/* Bottle 5 */}
-        <rect x="280" y="145" width="30" height="35" rx="5" fill="none" stroke="#FF3C3C" strokeWidth="2" />
-        <rect x="285" y="140" width="20" height="8" fill="none" stroke="#FF3C3C" strokeWidth="2" />
-        <text x="280" y="195" fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.6">jq</text>
-      </g>
-
-      {/* Status output */}
-      <g fontSize="9" fontFamily="monospace" fill="currentColor" opacity="0.5">
-        <text x="70" y="225">Installed: 247 formulae</text>
-        <text x="70" y="240">Casks: 83 applications</text>
-        <text x="70" y="255">Read-only scan complete</text>
-      </g>
-
-      {/* Cursor blink */}
-      <rect x="210" y="248" width="6" height="10" fill="#FF3C3C" opacity="0.7" />
-    </svg>
-  );
-}
+import Image from 'next/image'
+import { Terminal, Zap, Shield, Lock, ArrowRight } from 'lucide-react'
+import { FloatingTerminalCard } from '@/components/floating-terminal-card'
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background text-foreground" style={{ fontFamily: 'var(--font-sans)' }}>
+    <div className="flex min-h-dvh flex-col bg-background text-foreground">
+      {/* Skip to main content */}
+      <a
+        href="#main"
+        className="sr-only z-50 rounded-md bg-primary px-3 py-2 text-primary-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+      >
+        Skip to main content
+      </a>
+
       {/* Navigation */}
-      <nav className="border-b border-border/50 backdrop-blur-sm sticky top-0 z-50">
-        <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6 lg:px-8">
+      <nav className="sticky top-0 z-50 border-b border-border/50 backdrop-blur-sm" role="navigation" aria-label="Main navigation">
+        <div className="mx-auto max-w-6xl px-4 py-3 sm:px-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded bg-brew/80" />
-              <span className="text-lg font-semibold" style={{ fontFamily: 'var(--font-sans)' }}>brewscope</span>
+              <div className="size-6 rounded bg-brew/80" aria-hidden="true" />
+              <span className="text-lg font-semibold">brewscope</span>
             </div>
             <div className="flex items-center gap-4 text-sm">
-              <Link href="/demo" className="hover:text-brew transition-colors">
+              <Link href="/demo" className="transition-colors hover:text-brew">
                 Demo
               </Link>
-              <a href="https://github.com/rNLKJA/brewscope" className="hover:text-brew transition-colors">
+              <a
+                href="https://github.com/rNLKJA/brewscope"
+                className="transition-colors hover:text-brew"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 GitHub
               </a>
             </div>
@@ -111,176 +39,316 @@ export default function Home() {
         </div>
       </nav>
 
-      {/* Hero section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-brew/5 via-transparent to-transparent pointer-events-none" />
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 lg:px-8 relative">
-          <div className="grid md:grid-cols-[2fr,1fr] gap-12 items-center">
+      <main id="main">
+        {/* Hero section */}
+        <section className="relative overflow-hidden">
+          {/* Grain texture background */}
+          <div
+            aria-hidden="true"
+            className="grain absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_at_top,black,transparent_70%)]"
+          />
+          {/* Warm glow */}
+          <div
+            aria-hidden="true"
+            className="absolute -top-40 left-1/2 -z-10 size-[42rem] -translate-x-1/2 rounded-full bg-brew/15 blur-3xl"
+          />
+
+          <div className="mx-auto grid max-w-6xl items-center gap-16 px-4 pt-16 pb-24 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:pt-24 lg:pb-32">
+            {/* Hero content */}
             <div>
-              <h1 className="text-7xl font-bold tracking-tight mb-4" style={{ fontFamily: 'var(--font-sans)' }}>
-                brewscope
+              <p className="kicker text-brew/80">M0 Milestone</p>
+              <h1 className="mt-4 font-display text-[clamp(2.5rem,6vw,5.25rem)] leading-[1.02] font-semibold tracking-[-0.02em]">
+                A <em className="text-brew not-italic">read-only</em> terminal tool for your Homebrew setup
               </h1>
-              <p className="text-lg sm:text-xl text-foreground/80 leading-relaxed mb-8" style={{ fontFamily: 'var(--font-sans)' }}>
-                A read-only terminal tool that explains what your Homebrew setup actually does on macOS. Designed for AI agents first, pleasant for humans.
+              <p className="mt-8 max-w-xl text-[clamp(1.0625rem,1.5vw,1.125rem)] leading-relaxed text-muted-foreground">
+                Homebrew knows what you installed. brewscope explains what your setup actually does on macOS.
+                Designed for AI agents first, pleasant for humans.
               </p>
-              <div className="flex flex-wrap gap-3">
+
+              {/* CTA buttons */}
+              <div className="mt-10 flex flex-wrap gap-3">
                 <Link
                   href="/demo"
-                  className="inline-flex items-center px-6 py-2.5 rounded-lg bg-brew text-brew-fg font-medium hover:bg-brew/90 transition-all duration-200 hover:shadow-lg hover:shadow-brew/20"
+                  className="inline-flex h-12 items-center gap-1.5 rounded-full bg-brew px-6 text-[0.95rem] font-medium text-brew-fg shadow-md transition-all duration-200 hover:bg-brew/90 hover:shadow-lg focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
                 >
-                  Try interactive demo
+                  <span>Try interactive demo</span>
+                  <ArrowRight className="size-4" aria-hidden="true" />
                 </Link>
                 <a
                   href="https://github.com/rNLKJA/brewscope"
-                  className="inline-flex items-center px-6 py-2.5 rounded-lg border border-border/50 hover:border-brew/50 hover:bg-brew/5 transition-all duration-200"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-12 items-center gap-1.5 rounded-full bg-secondary px-6 text-[0.95rem] font-medium text-secondary-foreground shadow-sm transition-all duration-200 hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] hover:shadow-md focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
                 >
-                  View on GitHub
+                  <span>View on GitHub</span>
+                  <svg className="size-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
                 </a>
               </div>
-            </div>
-            <div className="flex justify-center">
-              <BrewscopeIllustration />
-            </div>
-          </div>
-        </div>
-      </div>
 
-      {/* Main content */}
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 pb-20">
-        {/* What it does */}
-        <div className="mb-16">
-          <div className="flex items-baseline gap-3 mb-6">
-            <h2 className="text-3xl font-bold" style={{ fontFamily: 'var(--font-sans)' }}>What it does</h2>
-            <Badge className="bg-brew/20 text-brew hover:bg-brew/30 border-0 font-mono text-xs">
-              M0
-            </Badge>
-          </div>
-          <Card className="bg-card/50 border-border/30 backdrop-blur-sm hover:border-border/50 transition-colors">
-            <CardContent className="p-6 space-y-4">
-              <p className="text-foreground/80 leading-relaxed" style={{ fontFamily: 'var(--font-sans)' }}>
-                Homebrew knows what you installed. It does not know that python3 on your PATH comes from pyenv, that two of your casks are both clipboard managers and you have opened one of them twice this year, or that nine casks have no app any more.
-              </p>
-              <p className="text-foreground/80 leading-relaxed" style={{ fontFamily: 'var(--font-sans)' }}>
-                brewscope reads the filesystem, your PATH and your usage history to answer those questions.
-              </p>
-              <div className="flex flex-wrap gap-2 pt-2">
-                <Badge variant="secondary" className="bg-brew/10 text-brew border-brew/20 hover:bg-brew/20">
-                  read-only
-                </Badge>
-                <Badge variant="secondary" className="bg-brew/10 text-brew border-brew/20 hover:bg-brew/20">
-                  JSON output
-                </Badge>
-                <Badge variant="secondary" className="bg-brew/10 text-brew border-brew/20 hover:bg-brew/20">
-                  AI agent first
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Try it section */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-6" style={{ fontFamily: 'var(--font-sans)' }}>Get started</h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            <Card className="bg-card/50 border-border/30 backdrop-blur-sm hover:border-brew/50 transition-colors group cursor-pointer">
-              <CardContent className="p-6">
-                <Link href="/demo" className="block">
-                  <div className="flex items-start justify-between mb-3">
-                    <h3 className="font-semibold text-lg group-hover:text-brew transition-colors" style={{ fontFamily: 'var(--font-sans)' }}>
-                      Interactive demo
-                    </h3>
-                    <span className="text-2xl group-hover:translate-x-1 transition-transform">→</span>
-                  </div>
-                  <p className="text-foreground/60 text-sm" style={{ fontFamily: 'var(--font-sans)' }}>
-                    Try brewscope in your browser without installing anything.
-                  </p>
+              {/* Follow-up text */}
+              <p className="mt-6 text-sm text-muted-foreground">
+                No installation needed for the{' '}
+                <Link href="/demo" className="font-medium text-brew underline-offset-4 hover:underline">
+                  interactive demo
                 </Link>
-              </CardContent>
-            </Card>
+                . Install the CLI with{' '}
+                <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-xs">uv tool install</code>.
+              </p>
+            </div>
 
-            <Card className="bg-card/50 border-border/30 backdrop-blur-sm hover:border-brew/50 transition-colors">
-              <CardContent className="p-6">
-                <h3 className="font-semibold text-lg mb-3" style={{ fontFamily: 'var(--font-sans)' }}>Install CLI</h3>
-                <pre className="bg-background/50 rounded border border-border/30 p-3 text-sm font-mono text-foreground/70 overflow-x-auto">
-                  <code>uv tool install git+https://github.com/rNLKJA/brewscope</code>
-                </pre>
-              </CardContent>
-            </Card>
+            {/* Hero artwork */}
+            <div className="relative mx-auto w-full max-w-md lg:max-w-none">
+              <div className="arch relative aspect-[4/5] w-full overflow-hidden border border-border/50 shadow-[0_20px_80px_-20px_rgba(212,143,79,0.4),0_8px_16px_-8px_rgba(0,0,0,0.3)]">
+                <Image
+                  src="/images/amber-light.svg"
+                  alt="Abstract amber glass and liquid light"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 28rem, 90vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+              </div>
+              <FloatingTerminalCard />
+            </div>
           </div>
-        </div>
+        </section>
+
+        {/* Stats row */}
+        <section aria-labelledby="stats" className="border-t border-border/50 bg-muted/30 py-20">
+          <h2 id="stats" className="sr-only">
+            Key features
+          </h2>
+          <div className="mx-auto max-w-6xl px-4 sm:px-6">
+            <p className="kicker text-center text-brew/80">Zero-impact introspection</p>
+            <dl className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+              {[
+                { label: 'read-only', value: '100%' },
+                { label: 'structured output', value: 'JSON' },
+                { label: 'side effects', value: 'Zero' },
+                { label: 'snapshots', value: 'Local' },
+              ].map((s) => (
+                <div key={s.label} className="text-center">
+                  <dd className="font-display text-[clamp(4.5rem,8vw,6rem)] font-bold leading-none tracking-tight">
+                    {s.value}
+                  </dd>
+                  <dt className="mt-3 text-sm uppercase tracking-[0.08em] text-muted-foreground">
+                    {s.label}
+                  </dt>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* What it does */}
+        <section
+          id="what"
+          aria-labelledby="what-title"
+          className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-24 sm:px-6 lg:py-32"
+        >
+          <p className="kicker text-brew/80">Homebrew insights</p>
+          <h2
+            id="what-title"
+            className="mt-4 max-w-2xl font-display text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-tight"
+          >
+            What it does.
+          </h2>
+          <div className="mt-8 space-y-4 rounded-xl border border-border bg-card p-8 shadow-md">
+            <p className="text-base leading-relaxed text-muted-foreground">
+              Homebrew knows what you installed. It does not know that python3 on your PATH comes from pyenv,
+              that two of your casks are both clipboard managers and you have opened one of them twice this year,
+              or that nine casks have no app any more.
+            </p>
+            <p className="text-base leading-relaxed text-muted-foreground">
+              brewscope reads the filesystem, your PATH and your usage history to answer those questions.
+            </p>
+            <div className="flex flex-wrap gap-2 pt-2">
+              <span className="rounded border border-brew/20 bg-brew/10 px-2.5 py-1 font-mono text-xs text-brew">
+                read-only
+              </span>
+              <span className="rounded border border-border/50 bg-muted px-2.5 py-1 font-mono text-xs text-muted-foreground">
+                JSON output
+              </span>
+              <span className="rounded border border-border/50 bg-muted px-2.5 py-1 font-mono text-xs text-muted-foreground">
+                AI agent first
+              </span>
+            </div>
+          </div>
+        </section>
 
         {/* Principles */}
-        <div className="mb-16">
-          <h2 className="text-3xl font-bold mb-6" style={{ fontFamily: 'var(--font-sans)' }}>Principles</h2>
-          <div className="grid gap-4 md:grid-cols-2">
-            <Card className="bg-card/50 border-border/30 backdrop-blur-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg" style={{ fontFamily: 'var(--font-sans)' }}>Read-only</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-foreground/70" style={{ fontFamily: 'var(--font-sans)' }}>
-                  Never installs, removes or upgrades anything. Recommendations are printed as commands for you to run.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/50 border-border/30 backdrop-blur-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg" style={{ fontFamily: 'var(--font-sans)' }}>No side effects</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-foreground/70" style={{ fontFamily: 'var(--font-sans)' }}>
-                  Runs brew with auto-update off, never triggers consent dialogs or bumps access times.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/50 border-border/30 backdrop-blur-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg" style={{ fontFamily: 'var(--font-sans)' }}>Counts, not content</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-foreground/70" style={{ fontFamily: 'var(--font-sans)' }}>
-                  Usage is stored as counts per binary. Command lines are never stored or printed.
-                </p>
-              </CardContent>
-            </Card>
-
-            <Card className="bg-card/50 border-border/30 backdrop-blur-sm">
-              <CardHeader className="pb-3">
-                <CardTitle className="text-lg" style={{ fontFamily: 'var(--font-sans)' }}>Local snapshots</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-foreground/70" style={{ fontFamily: 'var(--font-sans)' }}>
-                  Snapshots stay local because they name your host, paths and dotfiles.
-                </p>
-              </CardContent>
-            </Card>
+        <section
+          aria-labelledby="principles-title"
+          className="border-t border-border/50 bg-muted/30"
+        >
+          <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
+            <p className="kicker text-brew/80">Design principles</p>
+            <h2
+              id="principles-title"
+              className="mt-4 font-display text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-tight"
+            >
+              Built to be safe and transparent.
+            </h2>
+            <ol className="mt-12 grid gap-8 md:grid-cols-2">
+              {[
+                {
+                  icon: Shield,
+                  title: 'Read-only',
+                  body: 'Never installs, removes or upgrades anything. Recommendations are printed as commands for you to run.',
+                },
+                {
+                  icon: Zap,
+                  title: 'No side effects',
+                  body: 'Runs brew with auto-update off, never triggers consent dialogs or bumps access times.',
+                },
+                {
+                  icon: Terminal,
+                  title: 'Counts, not content',
+                  body: 'Usage is stored as counts per binary. Command lines are never stored or printed.',
+                },
+                {
+                  icon: Lock,
+                  title: 'Local snapshots',
+                  body: 'Snapshots stay local because they name your host, paths and dotfiles.',
+                },
+              ].map((principle) => (
+                <li
+                  key={principle.title}
+                  className="relative rounded-xl border border-border bg-card p-8 shadow-md transition-shadow duration-200 hover:shadow-lg"
+                >
+                  <principle.icon className="size-7 text-brew" aria-hidden="true" />
+                  <h3 className="mt-5 font-display text-2xl font-semibold">{principle.title}</h3>
+                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">{principle.body}</p>
+                </li>
+              ))}
+            </ol>
           </div>
-        </div>
+        </section>
+
+        {/* Get started */}
+        <section
+          aria-labelledby="getstarted-title"
+          className="mx-auto w-full max-w-6xl px-4 py-24 sm:px-6 lg:py-32"
+        >
+          <p className="kicker text-brew/80">Try it out</p>
+          <h2 id="getstarted-title" className="mt-4 font-display text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-tight">
+            Get started.
+          </h2>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {/* Demo card */}
+            <Link
+              href="/demo"
+              className="group flex items-center gap-6 rounded-2xl border border-border bg-card p-8 shadow-md transition-all duration-200 hover:border-brew/50 hover:shadow-lg"
+            >
+              <Terminal className="size-10 shrink-0 text-brew" aria-hidden="true" />
+              <span>
+                <span className="block font-display text-xl font-semibold group-hover:text-brew transition-colors duration-200">Interactive demo</span>
+                <span className="mt-1 block text-sm text-muted-foreground">
+                  Try brewscope in your browser without installing anything.
+                </span>
+              </span>
+              <ArrowRight
+                className="ml-auto size-5 shrink-0 transition-transform duration-200 group-hover:translate-x-1"
+                aria-hidden="true"
+              />
+            </Link>
+
+            {/* Install card */}
+            <div className="rounded-2xl border border-border bg-card p-8 shadow-md">
+              <h3 className="font-display text-xl font-semibold">Install CLI</h3>
+              <pre className="mt-4 overflow-x-auto rounded border border-border bg-muted/50 p-4 font-mono text-sm text-foreground/70">
+                <code>uv tool install git+https://github.com/rNLKJA/brewscope</code>
+              </pre>
+            </div>
+          </div>
+        </section>
 
         {/* About */}
-        <div>
-          <h2 className="text-3xl font-bold mb-6" style={{ fontFamily: 'var(--font-sans)' }}>About</h2>
-          <Card className="bg-card/50 border-border/30 backdrop-blur-sm">
-            <CardContent className="space-y-4 p-6">
-              <p className="text-foreground/80" style={{ fontFamily: 'var(--font-sans)' }}>
-                Built for AI coding agents first (Claude Code, Codex, Cursor): JSON on stdout, stable schemas, meaningful exit codes, no prompts. It stays pleasant for humans too, since a terminal gets a table.
+        <section
+          id="about"
+          aria-labelledby="about-title"
+          className="scroll-mt-20 border-t border-border/50 bg-muted/30"
+        >
+          <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
+            <p className="kicker text-brew/80">About this project</p>
+            <h2
+              id="about-title"
+              className="mt-4 font-display text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-tight"
+            >
+              A terminal tool for Homebrew on macOS.
+            </h2>
+            <div className="mt-8 space-y-4 rounded-xl border border-border bg-card p-8 shadow-md">
+              <p className="text-base leading-relaxed text-muted-foreground">
+                Built for AI coding agents first (Claude Code, Codex, Cursor): JSON on stdout, stable schemas,
+                meaningful exit codes, no prompts. It stays pleasant for humans too, since a terminal gets a table.
               </p>
-              <p className="text-sm text-foreground/60" style={{ fontFamily: 'var(--font-sans)' }}>
-                Currently at milestone <span className="text-brew font-medium">M0</span>: output contract, <code className="bg-background/50 rounded px-2 py-1 font-mono text-xs border border-border/30">describe</code>, <code className="bg-background/50 rounded px-2 py-1 font-mono text-xs border border-border/30">doctor</code>. Future milestones will add snapshot creation, inventory, conflict detection, usage analysis and migration planning.
+              <p className="text-sm leading-relaxed text-muted-foreground">
+                Currently at milestone <span className="font-medium text-brew">M0</span>: output contract,{' '}
+                <code className="rounded border border-border/30 bg-muted/50 px-2 py-1 font-mono text-xs">
+                  describe
+                </code>
+                ,{' '}
+                <code className="rounded border border-border/30 bg-muted/50 px-2 py-1 font-mono text-xs">
+                  doctor
+                </code>
+                . Future milestones will add snapshot creation, inventory, conflict detection, usage analysis
+                and migration planning.
               </p>
-              <Separator className="bg-border/30" />
-              <p className="text-sm text-foreground/60" style={{ fontFamily: 'var(--font-sans)' }}>
-                Provenance: This web app is a 2026 revival of a terminal tool built for Homebrew on macOS. Original implementation: <a href="https://github.com/rNLKJA/brewscope" className="text-brew hover:underline" target="_blank" rel="noopener noreferrer">github.com/rNLKJA/brewscope</a>
-              </p>
-              <p className="text-sm text-foreground/60" style={{ fontFamily: 'var(--font-sans)' }}>
-                Built with Next.js. <a href="https://rin.contact" className="text-brew hover:underline" target="_blank" rel="noopener noreferrer">rin.contact</a>
-              </p>
-            </CardContent>
-          </Card>
+              <div className="border-t border-border/50 pt-4">
+                <p className="text-sm text-muted-foreground">
+                  <strong className="text-foreground">Provenance.</strong> This web app is a 2026 revival of a
+                  terminal tool built for Homebrew on macOS. Original implementation:{' '}
+                  <a
+                    href="https://github.com/rNLKJA/brewscope"
+                    className="text-brew hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    github.com/rNLKJA/brewscope
+                  </a>
+                  . Built with Next.js.{' '}
+                  <a
+                    href="https://rin.contact"
+                    className="text-brew hover:underline"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    rin.contact
+                  </a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-auto border-t border-border/50 py-12">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6">
+          <div className="flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground sm:flex-row">
+            <p>
+              Built with Next.js ·{' '}
+              <a
+                href="https://github.com/rNLKJA/brewscope"
+                className="transition-colors hover:text-brew"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Source on GitHub
+              </a>
+            </p>
+            <p>
+              <a href="https://rin.contact" className="transition-colors hover:text-brew" target="_blank" rel="noopener noreferrer">
+                rin.contact
+              </a>
+            </p>
+          </div>
         </div>
-      </div>
+      </footer>
     </div>
   )
 }
