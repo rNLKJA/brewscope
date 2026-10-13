@@ -30,9 +30,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    applyTheme(theme)
     setMounted(true)
-  }, [theme])
+  }, [])
+
+  useEffect(() => {
+    if (mounted) {
+      applyTheme(theme)
+    }
+  }, [theme, mounted])
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme)
