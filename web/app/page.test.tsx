@@ -3,14 +3,16 @@ import { render, screen } from '@testing-library/react'
 import Home from '@/app/page'
 
 describe('Home page', () => {
-  it('renders the brewscope heading', () => {
+  it('renders the main heading', () => {
     render(<Home />)
-    expect(screen.getByRole('heading', { name: 'brewscope' })).toBeDefined()
+    const heading = screen.getByRole('heading', { level: 1 })
+    expect(heading).toBeDefined()
+    expect(heading.textContent).toContain('terminal tool')
   })
 
-  it('displays the tagline', () => {
+  it('displays the hero text', () => {
     render(<Home />)
-    expect(screen.getByText(/A read-only terminal tool that explains what your Homebrew setup actually does on macOS/)).toBeDefined()
+    expect(screen.getByText(/Analyse your Homebrew setup/)).toBeDefined()
   })
 
   it('has a link to the interactive demo', () => {
@@ -20,9 +22,11 @@ describe('Home page', () => {
 
   it('displays the four principles', () => {
     render(<Home />)
-    expect(screen.getByText('Read-only')).toBeDefined()
-    expect(screen.getByText('No side effects')).toBeDefined()
-    expect(screen.getByText('Counts, not content')).toBeDefined()
-    expect(screen.getByText('Local snapshots')).toBeDefined()
+    const principles = screen.getAllByRole('heading', { level: 3 })
+    const principleTexts = principles.map(p => p.textContent)
+    expect(principleTexts).toContain('Read-only')
+    expect(principleTexts).toContain('No side effects')
+    expect(principleTexts).toContain('Counts, not content')
+    expect(principleTexts).toContain('Local snapshots')
   })
 })

@@ -1,0 +1,114 @@
+<svg viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Noise for organic texture -->
+    <filter id="noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="2" />
+      <feColorMatrix type="saturate" values="0" />
+      <feComponentTransfer>
+        <feFuncA type="discrete" tableValues="0.08" />
+      </feComponentTransfer>
+    </filter>
+
+    <!-- Soft glow filter for luminosity -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Main orb radial gradient with subsurface scattering -->
+    <radialGradient id="orbGlow" cx="35%" cy="35%">
+      <stop offset="0%" style="stop-color:#FFE4B5;stop-opacity:1" />
+      <stop offset="20%" style="stop-color:#FFD68F;stop-opacity:1" />
+      <stop offset="40%" style="stop-color:#F4A460;stop-opacity:0.98" />
+      <stop offset="65%" style="stop-color:#D87B3A;stop-opacity:0.9" />
+      <stop offset="85%" style="stop-color:#B8621F;stop-opacity:0.75" />
+      <stop offset="100%" style="stop-color:#8B4513;stop-opacity:0.6" />
+    </radialGradient>
+
+    <!-- Intense specular highlight (bright spot) -->
+    <radialGradient id="specular" cx="25%" cy="25%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.95" />
+      <stop offset="15%" style="stop-color:#FFFFFF;stop-opacity:0.75" />
+      <stop offset="35%" style="stop-color:#FFE4B5;stop-opacity:0.45" />
+      <stop offset="60%" style="stop-color:#FFD68F;stop-opacity:0.15" />
+      <stop offset="100%" style="stop-color:transparent;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Secondary specular (smaller bright spot) -->
+    <radialGradient id="specular2" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.7" />
+      <stop offset="25%" style="stop-color:#FFE4B5;stop-opacity:0.35" />
+      <stop offset="50%" style="stop-color:transparent;stop-opacity:0" />
+    </radialGradient>
+
+    <!-- Rim light from top-left (cooler tone for contrast) -->
+    <linearGradient id="rimLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#A78BFA;stop-opacity:0.6" />
+      <stop offset="30%" style="stop-color:#E9A568;stop-opacity:0.4" />
+      <stop offset="70%" style="stop-color:#D48F4F;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:transparent;stop-opacity:0" />
+    </linearGradient>
+
+    <!-- Inset shadow for depth (stronger) -->
+    <radialGradient id="insetShadow" cx="50%" cy="65%">
+      <stop offset="0%" style="stop-color:transparent;stop-opacity:0" />
+      <stop offset="55%" style="stop-color:transparent;stop-opacity:0" />
+      <stop offset="75%" style="stop-color:#000000;stop-opacity:0.2" />
+      <stop offset="90%" style="stop-color:#000000;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0.6" />
+    </radialGradient>
+
+    <!-- Atmospheric glow (stronger) -->
+    <radialGradient id="atmosphere" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:transparent" />
+      <stop offset="60%" style="stop-color:#D48F4F;stop-opacity:0.25" />
+      <stop offset="85%" style="stop-color:#D48F4F;stop-opacity:0.4" />
+      <stop offset="100%" style="stop-color:#C17A3D;stop-opacity:0.5" />
+    </radialGradient>
+
+    <!-- Fresnel effect (edge glow) -->
+    <radialGradient id="fresnel" cx="50%" cy="50%">
+      <stop offset="0%" style="stop-color:transparent;stop-opacity:0" />
+      <stop offset="75%" style="stop-color:transparent;stop-opacity:0" />
+      <stop offset="88%" style="stop-color:#FFD68F;stop-opacity:0.3" />
+      <stop offset="100%" style="stop-color:#FFE4B5;stop-opacity:0.6" />
+    </radialGradient>
+  </defs>
+
+  <!-- Dark background -->
+  <rect width="800" height="800" fill="#0A0D12"/>
+
+  <!-- Atmospheric glow layer (expanded) -->
+  <circle cx="400" cy="400" r="400" fill="url(#atmosphere)" opacity="0.7"/>
+
+  <!-- Main orb with subsurface gradient -->
+  <circle cx="400" cy="400" r="280" fill="url(#orbGlow)"/>
+
+  <!-- Fresnel edge glow -->
+  <circle cx="400" cy="400" r="280" fill="url(#fresnel)"/>
+
+  <!-- Rim light overlay (stronger) -->
+  <circle cx="400" cy="400" r="280" fill="url(#rimLight)" opacity="0.85"/>
+
+  <!-- Primary specular highlight (larger, brighter) -->
+  <ellipse cx="320" cy="320" rx="180" ry="160" fill="url(#specular)" filter="url(#glow)"/>
+
+  <!-- Secondary specular highlight -->
+  <circle cx="360" cy="350" r="45" fill="url(#specular2)"/>
+
+  <!-- Inset shadow for depth (stronger) -->
+  <circle cx="400" cy="400" r="280" fill="url(#insetShadow)"/>
+
+  <!-- Fine grain texture -->
+  <rect width="800" height="800" filter="url(#noise)" opacity="0.25"/>
+
+  <!-- Enhanced bright accent spots for liquid light effect -->
+  <circle cx="310" cy="310" r="20" fill="#FFFFFF" opacity="0.5" filter="url(#glow)"/>
+  <circle cx="430" cy="350" r="12" fill="#FFE4B5" opacity="0.6"/>
+  <circle cx="300" cy="430" r="28" fill="#FFD68F" opacity="0.4"/>
+  <circle cx="480" cy="470" r="22" fill="#F4A460" opacity="0.45"/>
+  <circle cx="360" cy="520" r="15" fill="#E9A568" opacity="0.35"/>
+</svg>

@@ -1,0 +1,111 @@
+<svg viewBox="0 0 800 1000" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Turbulence for organic texture -->
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" seed="2" />
+      <feColorMatrix type="saturate" values="0" />
+      <feBlend in="SourceGraphic" mode="overlay" />
+    </filter>
+
+    <!-- Soft glow filter -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="12" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Strong glow for highlights -->
+    <filter id="strongGlow">
+      <feGaussianBlur stdDeviation="24" result="blur1" />
+      <feGaussianBlur stdDeviation="8" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur1" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Deep base gradient (near-black to dark amber) -->
+    <radialGradient id="base" cx="45%" cy="40%">
+      <stop offset="0%" stop-color="#1a1108" />
+      <stop offset="35%" stop-color="#0f0d12" />
+      <stop offset="70%" stop-color="#0a0b0f" />
+      <stop offset="100%" stop-color="#05070c" />
+    </radialGradient>
+
+    <!-- Warm amber pools -->
+    <radialGradient id="amber1" cx="30%" cy="35%">
+      <stop offset="0%" stop-color="#f4a03a" stop-opacity="0.9" />
+      <stop offset="25%" stop-color="#d48f4f" stop-opacity="0.75" />
+      <stop offset="50%" stop-color="#b47a3d" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#8a5a2d" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="amber2" cx="70%" cy="65%">
+      <stop offset="0%" stop-color="#e6a85d" stop-opacity="0.8" />
+      <stop offset="30%" stop-color="#c17a4a" stop-opacity="0.6" />
+      <stop offset="60%" stop-color="#9a5c38" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#6a3d1f" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Copper undertones -->
+    <radialGradient id="copper" cx="50%" cy="75%">
+      <stop offset="0%" stop-color="#c17a4a" stop-opacity="0.5" />
+      <stop offset="40%" stop-color="#8a5a2d" stop-opacity="0.25" />
+      <stop offset="100%" stop-color="#5a3a1d" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Bright highlight spots (liquid light) -->
+    <radialGradient id="highlight1" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#ffe4b5" stop-opacity="0.95" />
+      <stop offset="20%" stop-color="#f4a03a" stop-opacity="0.7" />
+      <stop offset="50%" stop-color="#d48f4f" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#b47a3d" stop-opacity="0" />
+    </radialGradient>
+
+    <radialGradient id="highlight2" cx="50%" cy="50%">
+      <stop offset="0%" stop-color="#ffd89a" stop-opacity="0.85" />
+      <stop offset="25%" stop-color="#e6a85d" stop-opacity="0.55" />
+      <stop offset="60%" stop-color="#c17a4a" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#9a5c38" stop-opacity="0" />
+    </radialGradient>
+
+    <!-- Diagonal sweep for depth -->
+    <linearGradient id="sweep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0b0f" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#1a1108" stop-opacity="0.4" />
+      <stop offset="70%" stop-color="#2a1d10" stop-opacity="0.2" />
+      <stop offset="100%" stop-color="#1a1108" stop-opacity="0.6" />
+    </linearGradient>
+  </defs>
+
+  <!-- Deep base layer -->
+  <rect width="800" height="1000" fill="url(#base)" />
+
+  <!-- Large organic amber pools -->
+  <ellipse cx="240" cy="350" rx="420" ry="380" fill="url(#amber1)" filter="url(#glow)" />
+  <ellipse cx="560" cy="650" rx="360" ry="420" fill="url(#amber2)" filter="url(#glow)" />
+
+  <!-- Copper undertone -->
+  <ellipse cx="400" cy="750" rx="280" ry="240" fill="url(#copper)" />
+
+  <!-- Flowing organic shapes (liquid light) -->
+  <path d="M 200 280 Q 280 200 380 240 T 520 300 Q 580 340 600 420 T 560 580 Q 520 640 420 620 T 260 560 Q 180 500 200 400 Z"
+        fill="url(#amber1)" opacity="0.6" filter="url(#glow)" />
+
+  <path d="M 500 500 Q 560 450 640 480 T 720 600 Q 740 680 680 740 T 560 780 Q 480 760 460 680 T 500 560 Z"
+        fill="url(#amber2)" opacity="0.5" filter="url(#glow)" />
+
+  <!-- Bright highlight spots (glass reflections) -->
+  <ellipse cx="280" cy="320" rx="85" ry="90" fill="url(#highlight1)" filter="url(#strongGlow)" />
+  <ellipse cx="590" cy="620" rx="70" ry="75" fill="url(#highlight2)" filter="url(#strongGlow)" />
+  <ellipse cx="420" cy="480" rx="50" ry="55" fill="url(#highlight1)" opacity="0.7" filter="url(#strongGlow)" />
+
+  <!-- Diagonal depth sweep -->
+  <rect width="800" height="1000" fill="url(#sweep)" />
+
+  <!-- Grain texture overlay -->
+  <rect width="800" height="1000" fill="#0a0d12" filter="url(#grain)" opacity="0.12" />
+</svg>

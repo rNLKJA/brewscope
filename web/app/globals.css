@@ -9,7 +9,8 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-display: var(--font-display-face);
+  --font-heading: var(--font-display-face);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -18,6 +19,8 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
@@ -31,6 +34,21 @@
   --color-accent: var(--accent);
   --color-brew: var(--brew);
   --color-brew-fg: var(--brew-fg);
+  --color-brew-deep: var(--brew-deep);
+  --color-copper: var(--copper);
+  --color-amber: var(--amber);
+  --color-dracula-bg: #282a36;
+  --color-dracula-deep: #1e1f29;
+  --color-dracula-purple: #bd93f9;
+  --color-dracula-pink: #ff79c6;
+  --color-dracula-cyan: #8be9fd;
+  --color-dracula-green: #50fa7b;
+  --color-dracula-orange: #ffb86c;
+  --color-dracula-yellow: #f1fa8c;
+  --color-dracula-red: #ff5555;
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-info: var(--info);
   --color-muted-foreground: var(--muted-foreground);
   --color-muted: var(--muted);
   --color-secondary-foreground: var(--secondary-foreground);
@@ -41,86 +59,133 @@
   --color-popover: var(--popover);
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
-  --radius-sm: 0.375rem;
-  --radius-md: 0.5rem;
-  --radius-lg: 0.625rem;
-  --radius-xl: 0.75rem;
+  --radius: 0.75rem;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Spacing tokens - Cradle-scale generous breathing room */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  --space-2xl: 12rem;
+  --space-3xl: 16rem;
+  --space-4xl: 20rem;
+
+  /* Shadow tokens - layered depth (sharp inner + diffuse outer like Cradle) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 2px 4px -1px rgba(0, 0, 0, 0.15), 0 8px 16px -4px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 4px 6px -2px rgba(0, 0, 0, 0.18), 0 12px 24px -6px rgba(0, 0, 0, 0.15);
 }
 
 :root {
-  /* Light mode: dark-first so light is fallback */
-  --background: oklch(0.98 0 0);
-  --foreground: oklch(0.2 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.2 0 0);
+  /* Light mode: warm off-white with tinted surface ladder */
+  --background: oklch(0.975 0.012 45);     /* surface-1: base background with amber tint */
+  --foreground: oklch(0.2 0.01 40);
+  --card: oklch(0.992 0.006 40);           /* surface-3: cards */
+  --card-foreground: oklch(0.2 0.01 40);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.2 0 0);
-  --primary: oklch(0.2 0 0);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.92 0 0);
-  --secondary-foreground: oklch(0.2 0 0);
-  --muted: oklch(0.88 0 0);
-  --muted-foreground: oklch(0.5 0 0);
-  --accent: oklch(0.92 0 0);
-  --accent-foreground: oklch(0.2 0 0);
-  --destructive: oklch(0.64 0.22 29.23);
-  --border: oklch(0.92 0 0);
-  --input: oklch(0.92 0 0);
-  --ring: oklch(0.5 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  /* Warm amber brew accent */
-  --brew: oklch(0.6 0.14 40);
+  --popover-foreground: oklch(0.2 0.01 40);
+  --primary: oklch(0.45 0.14 40);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.94 0.005 40);
+  --secondary-foreground: oklch(0.25 0.01 40);
+  --muted: oklch(0.95 0.005 40);
+  --muted-foreground: oklch(0.52 0.02 40);
+  --accent: oklch(0.96 0.01 40);
+  --accent-foreground: oklch(0.3 0.08 40);
+  --destructive: oklch(0.58 0.22 29);
+  --border: oklch(0.91 0.005 40);
+  --input: oklch(0.89 0.008 40);
+  --ring: oklch(0.55 0.12 40);
+  --chart-1: oklch(0.87 0.04 40);
+  --chart-2: oklch(0.556 0.1 40);
+  --chart-3: oklch(0.439 0.12 40);
+  --chart-4: oklch(0.371 0.1 40);
+  --chart-5: oklch(0.269 0.08 40);
+  /* Brewscope palette: warm amber and copper */
+  --brew: oklch(0.65 0.14 45);
   --brew-fg: oklch(1 0 0);
-  --sidebar: oklch(0.98 0 0);
-  --sidebar-foreground: oklch(0.2 0 0);
-  --sidebar-primary: oklch(0.2 0 0);
-  --sidebar-primary-foreground: oklch(0.98 0 0);
-  --sidebar-accent: oklch(0.92 0 0);
-  --sidebar-accent-foreground: oklch(0.2 0 0);
-  --sidebar-border: oklch(0.92 0 0);
-  --sidebar-ring: oklch(0.5 0 0);
+  --brew-deep: oklch(0.52 0.16 40);
+  --copper: oklch(0.58 0.15 35);
+  --amber: oklch(0.72 0.16 50);
+  --success: oklch(0.58 0.18 145);
+  --warning: oklch(0.68 0.18 65);
+  --info: oklch(0.55 0.15 230);
+  --sidebar: oklch(0.98 0.002 40);
+  --sidebar-foreground: oklch(0.2 0.01 40);
+  --sidebar-primary: oklch(0.45 0.14 40);
+  --sidebar-primary-foreground: oklch(0.99 0.002 40);
+  --sidebar-accent: oklch(0.94 0.005 40);
+  --sidebar-accent-foreground: oklch(0.25 0.01 40);
+  --sidebar-border: oklch(0.91 0.005 40);
+  --sidebar-ring: oklch(0.55 0.12 40);
+  /* Light mode surface ladder - warm amber tints with clear tonal steps */
+  --surface-0: oklch(0.94 0.035 45);       /* deeper warm amber base - visible tint */
+  --surface-1: oklch(0.965 0.028 48);      /* base background - clear amber */
+  --surface-2: oklch(0.98 0.022 50);       /* first elevated layer - lighter amber */
+  --surface-3: oklch(0.99 0.015 52);       /* cards - subtle amber */
+  --surface-4: oklch(0.998 0.008 55);      /* highest elevation - near white */
 }
 
 .dark {
-  /* Dark mode: dark-first default theme */
-  --background: #0f0f0f;
-  --foreground: #f5f5f5;
-  --card: #1a1a1a;
-  --card-foreground: #f5f5f5;
-  --popover: #242424;
-  --popover-foreground: #f5f5f5;
-  --primary: #f5f5f5;
-  --primary-foreground: #1a1a1a;
-  --secondary: #333333;
-  --secondary-foreground: #f5f5f5;
-  --muted: #3d3d3d;
-  --muted-foreground: #a6a6a6;
-  --accent: #3d3d3d;
-  --accent-foreground: #f5f5f5;
-  --destructive: #e11d48;
+  color-scheme: dark;
+  /* Dark mode: 5-step surface ladder matching Cradle's depth - blue-violet tint base with amber accents */
+  --background: oklch(0.09 0.022 250);      /* surface-1: base, deeper with blue-violet tint */
+  --foreground: #f8f8f2;
+  --card: oklch(0.15 0.018 250);            /* surface-2: elevated cards, clear step up */
+  --card-foreground: #f8f8f2;
+  --popover: oklch(0.22 0.014 250);         /* surface-3: popovers */
+  --popover-foreground: #f8f8f2;
+  --primary: #d48f4f;
+  --primary-foreground: oklch(0.09 0.022 250);
+  --secondary: oklch(0.22 0.014 250);       /* surface-3: interactive elements */
+  --secondary-foreground: #f8f8f2;
+  --muted: oklch(0.15 0.018 250);
+  --muted-foreground: #a9adc6;
+  --accent: oklch(0.22 0.014 250);
+  --accent-foreground: #f8f8f2;
+  --destructive: #ff6e6e;
   --border: rgba(255, 255, 255, 0.08);
-  --input: rgba(255, 255, 255, 0.12);
-  --ring: #a6a6a6;
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  /* Warm amber brew accent - more saturated in dark mode */
+  --input: rgba(255, 255, 255, 0.1);
+  --ring: #d48f4f;
+  --chart-1: #d48f4f;
+  --chart-2: #c4956f;
+  --chart-3: #b89a7f;
+  --chart-4: #9a8070;
+  --chart-5: #7a6860;
+  /* Brewscope palette: one accent (amber) only */
   --brew: #d48f4f;
-  --brew-fg: #1a1a1a;
-  --sidebar: #1a1a1a;
-  --sidebar-foreground: #f5f5f5;
-  --sidebar-primary: #d4a574;
-  --sidebar-primary-foreground: #1a1a1a;
-  --sidebar-accent: #3d3d3d;
-  --sidebar-accent-foreground: #f5f5f5;
+  --brew-fg: oklch(0.09 0.022 250);
+  --brew-deep: #b47a3d;
+  --copper: #c17a4a;
+  --amber: #e6a85d;
+  --success: #50fa7b;
+  --warning: #ffb86c;
+  --info: #8be9fd;
+  --sidebar: oklch(0.15 0.018 250);
+  --sidebar-foreground: #f8f8f2;
+  --sidebar-primary: #d48f4f;
+  --sidebar-primary-foreground: oklch(0.09 0.022 250);
+  --sidebar-accent: oklch(0.22 0.014 250);
+  --sidebar-accent-foreground: #f8f8f2;
   --sidebar-border: rgba(255, 255, 255, 0.08);
-  --sidebar-ring: #a6a6a6;
+  --sidebar-ring: #d48f4f;
+  /* Dark mode 5-step surface ladder - blue-violet tint matching Cradle's depth */
+  --surface-0: oklch(0.03 0.028 250);       /* deepest level - near black with blue-violet */
+  --surface-1: oklch(0.09 0.022 250);       /* base: same as background */
+  --surface-2: oklch(0.15 0.018 250);       /* cards */
+  --surface-3: oklch(0.22 0.014 250);       /* elevated */
+  --surface-4: oklch(0.28 0.012 250);       /* interactive hover states */
+  --surface-6: oklch(0.32 0.024 41);       /* highest level */
 }
 
 @layer base {
@@ -129,9 +194,87 @@
   }
   body {
     @apply bg-background text-foreground;
-    
+
   }
   html {
     @apply font-sans;
+  }
+}
+
+@layer utilities {
+  /* Typography utilities with fluid scaling */
+  .text-display {
+    font-size: clamp(3rem, 6vw + 1rem, 4.5rem); /* 48px → 72px, matches Cradle text-7xl */
+    font-weight: 600;
+    letter-spacing: -0.04em; /* Tighter tracking like Cradle */
+    line-height: 0.95;
+  }
+
+  .text-heading {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .text-subheading {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .text-body {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.7; /* Cradle's comfortable 1.65-1.75 range */
+  }
+
+  .text-kicker {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  /* Typography utilities */
+  .font-display {
+    font-family: var(--font-display-face), var(--font-sans);
+    font-optical-sizing: auto;
+    letter-spacing: -0.015em;
+  }
+
+  .kicker {
+    @apply font-mono text-[0.72rem] uppercase tracking-[0.14em];
+  }
+
+  /* Grain background effect */
+  .grain {
+    background-image:
+      radial-gradient(
+        circle at center,
+        hsl(var(--foreground) / 0.07) 1px,
+        transparent 1px
+      );
+    background-size: 18px 18px;
+    mask-image: radial-gradient(
+      circle at center,
+      transparent 0%,
+      black 70%
+    );
+  }
+
+  /* Arch frame (Cradle signature shape) */
+  .arch {
+    border-radius: 999px 999px 1.25rem 1.25rem;
+  }
+
+  /* Focus rings matching Cradle patterns */
+  .focus-ring-primary {
+    @apply focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50;
+  }
+
+  .focus-ring-brew {
+    @apply focus-visible:border-brew focus-visible:ring-3 focus-visible:ring-brew/50;
   }
 }
