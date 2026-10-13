@@ -19,6 +19,8 @@
   --color-sidebar-primary: var(--sidebar-primary);
   --color-sidebar-foreground: var(--sidebar-foreground);
   --color-sidebar: var(--sidebar);
+  --color-surface-2: var(--surface-2);
+  --color-surface-3: var(--surface-3);
   --color-chart-5: var(--chart-5);
   --color-chart-4: var(--chart-4);
   --color-chart-3: var(--chart-3);
@@ -58,20 +60,37 @@
   --color-card-foreground: var(--card-foreground);
   --color-card: var(--card);
   --radius: 0.75rem;
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
   --radius-xl: calc(var(--radius) * 1.4);
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+
+  /* Spacing tokens - Cradle-scale generous breathing room */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+  --space-2xl: 12rem;
+  --space-3xl: 16rem;
+  --space-4xl: 20rem;
+
+  /* Shadow tokens - layered depth (sharp inner + diffuse outer like Cradle) */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 1px 3px 0 rgba(0, 0, 0, 0.12), 0 4px 8px -2px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 2px 4px -1px rgba(0, 0, 0, 0.15), 0 8px 16px -4px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 4px 6px -2px rgba(0, 0, 0, 0.18), 0 12px 24px -6px rgba(0, 0, 0, 0.15);
 }
 
 :root {
-  /* Light mode: calm with warm amber accents */
-  --background: oklch(0.99 0.003 40);
+  /* Light mode: warm off-white with tinted surface ladder */
+  --background: oklch(0.975 0.012 45);     /* surface-1: base background with amber tint */
   --foreground: oklch(0.2 0.01 40);
-  --card: oklch(1 0 0);
+  --card: oklch(0.992 0.006 40);           /* surface-3: cards */
   --card-foreground: oklch(0.2 0.01 40);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.2 0.01 40);
@@ -109,24 +128,30 @@
   --sidebar-accent-foreground: oklch(0.25 0.01 40);
   --sidebar-border: oklch(0.91 0.005 40);
   --sidebar-ring: oklch(0.55 0.12 40);
+  /* Light mode surface ladder - warm amber tints with clear tonal steps */
+  --surface-0: oklch(0.94 0.035 45);       /* deeper warm amber base - visible tint */
+  --surface-1: oklch(0.965 0.028 48);      /* base background - clear amber */
+  --surface-2: oklch(0.98 0.022 50);       /* first elevated layer - lighter amber */
+  --surface-3: oklch(0.99 0.015 52);       /* cards - subtle amber */
+  --surface-4: oklch(0.998 0.008 55);      /* highest elevation - near white */
 }
 
 .dark {
   color-scheme: dark;
-  /* Dark mode: stepped surface levels with warm amber accent */
-  --background: #0a0d12;       /* surface-1: base background */
+  /* Dark mode: 5-step surface ladder matching Cradle's depth - blue-violet tint base with amber accents */
+  --background: oklch(0.09 0.022 250);      /* surface-1: base, deeper with blue-violet tint */
   --foreground: #f8f8f2;
-  --card: #0f131c;             /* surface-2: elevated cards */
+  --card: oklch(0.15 0.018 250);            /* surface-2: elevated cards, clear step up */
   --card-foreground: #f8f8f2;
-  --popover: #161d2b;          /* surface-3: popovers */
+  --popover: oklch(0.22 0.014 250);         /* surface-3: popovers */
   --popover-foreground: #f8f8f2;
   --primary: #d48f4f;
-  --primary-foreground: #0a0d12;
-  --secondary: #1e2636;        /* surface-4: interactive elements */
+  --primary-foreground: oklch(0.09 0.022 250);
+  --secondary: oklch(0.22 0.014 250);       /* surface-3: interactive elements */
   --secondary-foreground: #f8f8f2;
-  --muted: #161d2b;
+  --muted: oklch(0.15 0.018 250);
   --muted-foreground: #a9adc6;
-  --accent: #1e2636;
+  --accent: oklch(0.22 0.014 250);
   --accent-foreground: #f8f8f2;
   --destructive: #ff6e6e;
   --border: rgba(255, 255, 255, 0.08);
@@ -139,21 +164,28 @@
   --chart-5: #7a6860;
   /* Brewscope palette: one accent (amber) only */
   --brew: #d48f4f;
-  --brew-fg: #0a0d12;
+  --brew-fg: oklch(0.09 0.022 250);
   --brew-deep: #b47a3d;
   --copper: #c17a4a;
   --amber: #e6a85d;
   --success: #50fa7b;
   --warning: #ffb86c;
   --info: #8be9fd;
-  --sidebar: #0f131c;
+  --sidebar: oklch(0.15 0.018 250);
   --sidebar-foreground: #f8f8f2;
   --sidebar-primary: #d48f4f;
-  --sidebar-primary-foreground: #0a0d12;
-  --sidebar-accent: #1e2636;
+  --sidebar-primary-foreground: oklch(0.09 0.022 250);
+  --sidebar-accent: oklch(0.22 0.014 250);
   --sidebar-accent-foreground: #f8f8f2;
   --sidebar-border: rgba(255, 255, 255, 0.08);
   --sidebar-ring: #d48f4f;
+  /* Dark mode 5-step surface ladder - blue-violet tint matching Cradle's depth */
+  --surface-0: oklch(0.03 0.028 250);       /* deepest level - near black with blue-violet */
+  --surface-1: oklch(0.09 0.022 250);       /* base: same as background */
+  --surface-2: oklch(0.15 0.018 250);       /* cards */
+  --surface-3: oklch(0.22 0.014 250);       /* elevated */
+  --surface-4: oklch(0.28 0.012 250);       /* interactive hover states */
+  --surface-6: oklch(0.32 0.024 41);       /* highest level */
 }
 
 @layer base {
@@ -170,6 +202,41 @@
 }
 
 @layer utilities {
+  /* Typography utilities with fluid scaling */
+  .text-display {
+    font-size: clamp(3rem, 6vw + 1rem, 4.5rem); /* 48px → 72px, matches Cradle text-7xl */
+    font-weight: 600;
+    letter-spacing: -0.04em; /* Tighter tracking like Cradle */
+    line-height: 0.95;
+  }
+
+  .text-heading {
+    font-size: clamp(1.75rem, 4vw, 2.75rem);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .text-subheading {
+    font-size: clamp(1.25rem, 2.5vw, 1.5rem);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+
+  .text-body {
+    font-size: clamp(1rem, 1.5vw, 1.125rem);
+    font-weight: 400;
+    line-height: 1.7; /* Cradle's comfortable 1.65-1.75 range */
+  }
+
+  .text-kicker {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
   /* Typography utilities */
   .font-display {
     font-family: var(--font-display-face), var(--font-sans);

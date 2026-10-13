@@ -53,37 +53,37 @@ export default function Home() {
             className="absolute -top-40 left-1/2 -z-10 size-[min(42rem,100vw)] -translate-x-1/2 rounded-full bg-brew/15 blur-3xl"
           />
 
-          <div className="mx-auto grid max-w-6xl items-center gap-16 px-4 pt-16 pb-24 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:pt-24 lg:pb-32">
+          <div className="mx-auto grid max-w-6xl items-center gap-16 px-4 pt-32 pb-96 sm:px-6 lg:grid-cols-[1.1fr_0.9fr] lg:pt-48 lg:pb-[36rem]">
             {/* Hero content */}
             <div>
-              <p className="kicker text-brew/80">M0 Milestone</p>
-              <h1 className="mt-4 font-display text-[clamp(2.5rem,6vw,5.25rem)] leading-[1.02] font-semibold tracking-[-0.02em]">
-                A <em className="text-brew not-italic">read-only</em> terminal tool for your Homebrew setup
+              <p className="text-kicker text-brew">Real-time brewing data</p>
+              <h1 className="mt-4 font-display text-display leading-[1.02]">
+                A <span className="text-brew">read-only</span> terminal tool for Homebrew on macOS.
               </h1>
-              <p className="mt-8 max-w-xl text-[clamp(1.0625rem,1.5vw,1.125rem)] leading-relaxed text-muted-foreground">
-                Homebrew knows what you installed. brewscope explains what your setup actually does on macOS.
-                Designed for AI agents first, pleasant for humans.
+              <p className="mt-8 max-w-xl text-body text-muted-foreground">
+                Analyse your Homebrew setup: find unused casks, detect conflicts, trace what is on your PATH and which
+                cask you actually open.
               </p>
 
               {/* CTA buttons */}
-              <div className="mt-10 flex flex-wrap gap-3">
+              <div className="mt-14 flex flex-wrap gap-4">
                 <Link
                   href="/demo"
-                  className="inline-flex h-12 items-center gap-1.5 rounded-full bg-brew px-6 text-[0.95rem] font-medium text-brew-fg shadow-md transition-all duration-200 hover:bg-brew/90 hover:shadow-lg focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                  className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-br from-brew via-brew to-brew/80 px-8 py-4 font-semibold text-black shadow-[0_4px_16px_rgba(233,165,104,0.4)] transition-all duration-200 hover:shadow-[0_8px_24px_rgba(233,165,104,0.5)] hover:-translate-y-0.5"
                 >
-                  <span>Try interactive demo</span>
-                  <ArrowRight className="size-4" aria-hidden="true" />
+                  Try interactive demo
+                  <ArrowRight className="size-5 transition-transform group-hover:translate-x-1" aria-hidden="true" />
                 </Link>
                 <a
                   href="https://github.com/rNLKJA/brewscope"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 items-center gap-1.5 rounded-full bg-secondary px-6 text-[0.95rem] font-medium text-secondary-foreground shadow-sm transition-all duration-200 hover:bg-[color-mix(in_oklch,var(--secondary),var(--foreground)_5%)] hover:shadow-md focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"
+                  className="group inline-flex items-center gap-2 rounded-full border border-border bg-surface-2 px-8 py-4 font-semibold shadow-[0_4px_16px_rgba(0,0,0,0.3)] transition-all duration-200 hover:border-brew/50 hover:shadow-[0_8px_24px_rgba(0,0,0,0.4)] hover:-translate-y-0.5"
                 >
-                  <span>View on GitHub</span>
-                  <svg className="size-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <svg className="size-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                     <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                   </svg>
+                  View on GitHub
                 </a>
               </div>
 
@@ -102,7 +102,7 @@ export default function Home() {
             <div className="relative mx-auto w-full max-w-md lg:max-w-none">
               <div className="arch relative aspect-[4/5] w-full overflow-hidden border border-border/50 shadow-[0_20px_80px_-20px_rgba(212,143,79,0.4),0_8px_16px_-8px_rgba(0,0,0,0.3)]">
                 <Image
-                  src="/images/amber-light.svg"
+                  src="/images/amber-hero.svg"
                   alt="Abstract amber glass and liquid light"
                   fill
                   priority
@@ -117,13 +117,13 @@ export default function Home() {
         </section>
 
         {/* Stats row */}
-        <section aria-labelledby="stats" className="border-t border-border/50 bg-muted/30 py-20">
+        <section aria-labelledby="stats" className="border-t border-border/50 py-48 lg:py-56" style={{ backgroundColor: 'var(--surface-2)' }}>
           <h2 id="stats" className="sr-only">
             Key features
           </h2>
           <div className="mx-auto max-w-6xl px-4 sm:px-6">
-            <p className="kicker text-center text-brew/80">Zero-impact introspection</p>
-            <dl className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <p className="text-kicker text-center text-brew/80">Zero-impact introspection</p>
+            <dl className="mt-10 grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
               {[
                 { label: 'read-only', value: '100%' },
                 { label: 'structured output', value: 'JSON' },
@@ -131,7 +131,7 @@ export default function Home() {
                 { label: 'snapshots', value: 'Local' },
               ].map((s) => (
                 <div key={s.label} className="text-center">
-                  <dd className="font-display text-[clamp(4.5rem,8vw,6rem)] font-bold leading-none tracking-tight">
+                  <dd className="font-display text-[clamp(4.5rem,8vw,6rem)] font-bold leading-none tracking-[-0.03em] text-brew">
                     {s.value}
                   </dd>
                   <dt className="mt-3 text-sm uppercase tracking-[0.08em] text-muted-foreground">
@@ -147,22 +147,29 @@ export default function Home() {
         <section
           id="what"
           aria-labelledby="what-title"
-          className="mx-auto w-full max-w-6xl scroll-mt-20 px-4 py-24 sm:px-6 lg:py-32"
+          className="border-t border-border/50"
+          style={{ backgroundColor: 'oklch(0.92 0.04 45)' }} /* Darker amber-tinted background for callout prominence */
         >
-          <p className="kicker text-brew/80">Homebrew insights</p>
+          <div className="mx-auto w-full max-w-6xl px-4 py-56 sm:px-6 lg:py-64">
+          <p className="text-kicker text-brew/70">Homebrew insights</p>
           <h2
             id="what-title"
-            className="mt-4 max-w-2xl font-display text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-tight"
+            className="mt-4 max-w-2xl text-heading"
           >
             What it does.
           </h2>
-          <div className="mt-8 space-y-4 rounded-xl border border-border bg-card p-8 shadow-md">
-            <p className="text-base leading-relaxed text-muted-foreground">
+          <div
+            className="mt-10 space-y-5 rounded-xl border border-border bg-card p-10 lg:p-12"
+            style={{
+              boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.06)',
+            }}
+          >
+            <p className="text-base leading-[1.65] text-muted-foreground">
               Homebrew knows what you installed. It does not know that python3 on your PATH comes from pyenv,
               that two of your casks are both clipboard managers and you have opened one of them twice this year,
               or that nine casks have no app any more.
             </p>
-            <p className="text-base leading-relaxed text-muted-foreground">
+            <p className="text-base leading-[1.65] text-muted-foreground">
               brewscope reads the filesystem, your PATH and your usage history to answer those questions.
             </p>
             <div className="flex flex-wrap gap-2 pt-2">
@@ -177,22 +184,24 @@ export default function Home() {
               </span>
             </div>
           </div>
+          </div>
         </section>
 
         {/* Principles */}
         <section
           aria-labelledby="principles-title"
-          className="border-t border-border/50 bg-muted/30"
+          className="border-t border-border/50"
+          style={{ backgroundColor: 'var(--surface-2)' }}
         >
-          <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
-            <p className="kicker text-brew/80">Design principles</p>
+          <div className="mx-auto max-w-6xl px-4 py-56 sm:px-6 lg:py-64">
+            <p className="text-kicker text-brew/70">Design principles</p>
             <h2
               id="principles-title"
-              className="mt-4 font-display text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-tight"
+              className="mt-4 text-heading"
             >
               Built to be safe and transparent.
             </h2>
-            <ol className="mt-12 grid gap-8 md:grid-cols-2">
+            <ol className="mt-12 grid gap-12 md:grid-cols-2">
               {[
                 {
                   icon: Shield,
@@ -217,11 +226,14 @@ export default function Home() {
               ].map((principle) => (
                 <li
                   key={principle.title}
-                  className="relative rounded-xl border border-border bg-card p-8 shadow-md transition-shadow duration-200 hover:shadow-lg"
+                  className="relative rounded-xl border border-border bg-card p-10 transition-all duration-200 hover:border-brew/30 lg:p-12"
+                  style={{
+                    boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.06)',
+                  }}
                 >
                   <principle.icon className="size-7 text-brew" aria-hidden="true" />
                   <h3 className="mt-5 font-display text-2xl font-semibold">{principle.title}</h3>
-                  <p className="mt-3 text-base leading-relaxed text-muted-foreground">{principle.body}</p>
+                  <p className="mt-3 text-base leading-[1.65] text-muted-foreground">{principle.body}</p>
                 </li>
               ))}
             </ol>
@@ -231,18 +243,21 @@ export default function Home() {
         {/* Get started */}
         <section
           aria-labelledby="getstarted-title"
-          className="mx-auto w-full max-w-6xl px-4 py-24 sm:px-6 lg:py-32"
+          className="mx-auto w-full max-w-6xl px-4 py-56 sm:px-6 lg:py-64"
         >
-          <p className="kicker text-brew/80">Try it out</p>
-          <h2 id="getstarted-title" className="mt-4 font-display text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-tight">
+          <p className="text-kicker text-brew/70">Try it out</p>
+          <h2 id="getstarted-title" className="mt-4 text-heading">
             Get started.
           </h2>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-1 md:grid-cols-2">
+          <div className="mt-12 grid gap-8 sm:grid-cols-1 md:grid-cols-2">
             {/* Demo card */}
             <Link
               href="/demo"
-              className="group flex min-w-0 items-center gap-4 rounded-2xl border border-border bg-card p-6 shadow-md transition-all duration-200 hover:border-brew/50 hover:shadow-lg sm:gap-6 sm:p-8"
+              className="group flex min-w-0 items-center gap-4 rounded-2xl border border-border bg-card p-10 transition-all duration-200 hover:border-brew/50 sm:gap-6 lg:p-12"
+              style={{
+                boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.06)',
+              }}
             >
               <Terminal className="size-10 shrink-0 text-brew" aria-hidden="true" />
               <span className="min-w-0 flex-1">
@@ -258,7 +273,12 @@ export default function Home() {
             </Link>
 
             {/* Install card */}
-            <div className="min-w-0 rounded-2xl border border-border bg-card p-6 shadow-md sm:p-8">
+            <div
+              className="min-w-0 rounded-2xl border border-border bg-card p-10 lg:p-12"
+              style={{
+                boxShadow: '0 1px 2px rgba(0,0,0,0.04), 0 2px 6px rgba(0,0,0,0.06)',
+              }}
+            >
               <h3 className="font-display text-xl font-semibold">Install CLI</h3>
               <pre className="mt-4 overflow-x-auto rounded border border-border bg-muted/50 p-4 font-mono text-sm text-foreground/70">
                 <code>uv tool install git+https://github.com/rNLKJA/brewscope</code>
@@ -271,22 +291,23 @@ export default function Home() {
         <section
           id="about"
           aria-labelledby="about-title"
-          className="scroll-mt-20 border-t border-border/50 bg-muted/30"
+          className="scroll-mt-20 border-t border-border/50"
+          style={{ backgroundColor: 'var(--surface-2)' }}
         >
-          <div className="mx-auto max-w-6xl px-4 py-24 sm:px-6 lg:py-32">
-            <p className="kicker text-brew/80">About this project</p>
+          <div className="mx-auto max-w-6xl px-4 py-40 sm:px-6 lg:py-48">
+            <p className="text-kicker text-brew/70">About this project</p>
             <h2
               id="about-title"
-              className="mt-4 font-display text-[clamp(2rem,4vw,3rem)] font-semibold leading-tight tracking-tight"
+              className="mt-4 text-heading"
             >
               A terminal tool for Homebrew on macOS.
             </h2>
-            <div className="mt-8 space-y-4 rounded-xl border border-border bg-card p-8 shadow-md">
-              <p className="text-base leading-relaxed text-muted-foreground">
+            <div className="mt-10 space-y-5 rounded-xl border border-border bg-card p-10 shadow-md lg:p-12">
+              <p className="text-base leading-[1.65] text-muted-foreground">
                 Built for AI coding agents first (Claude Code, Codex, Cursor): JSON on stdout, stable schemas,
                 meaningful exit codes, no prompts. It stays pleasant for humans too, since a terminal gets a table.
               </p>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p className="text-sm leading-[1.65] text-muted-foreground">
                 Currently at milestone <span className="font-medium text-brew">M0</span>: output contract,{' '}
                 <code className="rounded border border-border/30 bg-muted/50 px-2 py-1 font-mono text-xs">
                   describe
@@ -327,7 +348,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-border/50 py-12">
+      <footer className="mt-auto border-t border-border/50 py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <div className="flex flex-col items-center justify-between gap-4 text-sm text-muted-foreground sm:flex-row">
             <p>
