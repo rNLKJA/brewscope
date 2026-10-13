@@ -15,8 +15,16 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('light')
   const [mounted, setMounted] = useState(false)
 
+  const applyTheme = (theme: Theme) => {
+    const html = document.documentElement
+    if (theme === 'dark') {
+      html.classList.add('dark')
+    } else {
+      html.classList.remove('dark')
+    }
+  }
+
   useEffect(() => {
-    setMounted(true)
     // Get theme from localStorage or system preference
     const stored = localStorage.getItem('theme') as Theme | null
     if (stored) {
@@ -28,21 +36,13 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       applyTheme(initialTheme)
       setThemeState(initialTheme)
     }
+    setMounted(true)
   }, [])
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme)
     localStorage.setItem('theme', newTheme)
     applyTheme(newTheme)
-  }
-
-  const applyTheme = (theme: Theme) => {
-    const html = document.documentElement
-    if (theme === 'dark') {
-      html.classList.add('dark')
-    } else {
-      html.classList.remove('dark')
-    }
   }
 
   if (!mounted) {
