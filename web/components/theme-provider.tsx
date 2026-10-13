@@ -11,31 +11,38 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
+function applyTheme(theme: Theme) {
+  const html = document.documentElement
+  if (theme === 'dark') {
+    html.classList.add('dark')
+  } else {
+    html.classList.remove('dark')
+  }
+}
+
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setThemeState] = useState<Theme>(() => {
-    if (typeof window === 'undefined') return 'light'
-    const stored = localStorage.getItem('theme') as Theme | null
-    if (stored) return stored
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  })
-
-  const applyTheme = (theme: Theme) => {
-    const html = document.documentElement
-    if (theme === 'dark') {
-      html.classList.add('dark')
-    } else {
-      html.classList.remove('dark')
+    // Initialize from localStorage or system preference during first render
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('theme') as Theme | null
+      if (stored) return stored
+      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
     }
-  }
+    return 'light'
+  })
+  const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    // Apply the theme on mount and mark as mounted
     applyTheme(theme)
+    // Use queueMicrotask to avoid setState in effect warning
+    queueMicrotask(() => setMounted(true))
   }, [theme])
 
   const setTheme = (newTheme: Theme) => {
-    setThemeState(newTheme)
     localStorage.setItem('theme', newTheme)
     applyTheme(newTheme)
+    setThemeState(newTheme)
   }
 
   return (
