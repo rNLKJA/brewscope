@@ -12,7 +12,7 @@ describe('Home page', () => {
 
   it('displays the hero text', () => {
     render(<Home />)
-    expect(screen.getByText(/Designed for AI agents first, pleasant for humans/)).toBeDefined()
+    expect(screen.getByText(/Analyse your Homebrew setup/)).toBeDefined()
   })
 
   it('has a link to the interactive demo', () => {
