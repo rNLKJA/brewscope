@@ -12,7 +12,12 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>('light')
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window === 'undefined') return 'light'
+    const stored = localStorage.getItem('theme') as Theme | null
+    if (stored) return stored
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  })
   const [mounted, setMounted] = useState(false)
 
   const applyTheme = (theme: Theme) => {
@@ -25,17 +30,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }
 
   useEffect(() => {
-    // Get theme from localStorage or system preference
-    const stored = localStorage.getItem('theme') as Theme | null
-    if (stored) {
-      applyTheme(stored)
-      setThemeState(stored)
-    } else {
-      const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      const initialTheme: Theme = isDark ? 'dark' : 'light'
-      applyTheme(initialTheme)
-      setThemeState(initialTheme)
-    }
+    applyTheme(theme)
     setMounted(true)
   }, [])
 
