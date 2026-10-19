@@ -61,8 +61,8 @@ export default function Home() {
             {/* Hero content */}
             <div>
               <p className="text-kicker text-brew">Homebrew inspector</p>
-              <h1 className="mt-5 font-display text-display leading-[0.98]">
-                A <span className="text-brew">read-only</span> terminal tool for Homebrew on macOS.
+              <h1 className="mt-5 font-display text-display leading-[0.96]">
+                See what your Homebrew <span className="text-brew">actually does</span>.
               </h1>
               <p className="mt-10 max-w-xl text-body text-muted-foreground">
                 Analyse your Homebrew setup: find unused casks, detect conflicts, trace what is on your PATH and which
@@ -106,9 +106,9 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Hero artwork */}
-            <div className="relative mx-auto w-full max-w-md lg:max-w-none">
-              <div className="arch relative aspect-[4/5] w-full overflow-hidden border border-brew/20 shadow-[0_24px_96px_-24px_rgba(233,165,104,0.45),0_12px_24px_-12px_rgba(0,0,0,0.4)]">
+            {/* Hero artwork - full bleed without border */}
+            <div className="relative mx-auto w-full max-w-md lg:max-w-none -mr-4 sm:-mr-6">
+              <div className="arch relative aspect-[4/5] w-full overflow-hidden shadow-[0_28px_112px_-28px_rgba(233,165,104,0.50),0_14px_28px_-14px_rgba(0,0,0,0.45)]">
                 <Image
                   src="/images/amber-hero.svg"
                   alt="Abstract amber glass and liquid light"
@@ -117,7 +117,7 @@ export default function Home() {
                   sizes="(min-width: 1024px) 28rem, 90vw"
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-background/75 via-background/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-background/15 to-transparent" />
               </div>
               <FloatingTerminalCard />
             </div>
@@ -151,17 +151,16 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What it does */}
+        {/* What it does - no kicker for variety */}
         <section
           id="what"
           aria-labelledby="what-title"
           className="border-t border-border py-28 lg:py-32"
         >
           <div className="mx-auto w-full max-w-6xl px-4 sm:px-6">
-          <p className="text-kicker text-brew">Homebrew insights</p>
           <h2
             id="what-title"
-            className="mt-5 max-w-2xl text-heading"
+            className="max-w-2xl text-heading"
           >
             What it does.
           </h2>
@@ -240,13 +239,12 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Get started */}
+        {/* Get started - no kicker for variety */}
         <section
           aria-labelledby="getstarted-title"
           className="mx-auto w-full max-w-6xl px-4 py-28 sm:px-6 lg:py-32"
         >
-          <p className="text-kicker text-brew">Try it out</p>
-          <h2 id="getstarted-title" className="mt-5 text-heading">
+          <h2 id="getstarted-title" className="text-heading">
             Get started.
           </h2>
 
