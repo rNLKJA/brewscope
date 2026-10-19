@@ -7,7 +7,7 @@ describe('Home page', () => {
     render(<Home />)
     const heading = screen.getByRole('heading', { level: 1 })
     expect(heading).toBeDefined()
-    expect(heading.textContent).toContain('terminal tool')
+    expect(heading.textContent).toContain('Homebrew')
   })
 
   it('displays the hero text', () => {
