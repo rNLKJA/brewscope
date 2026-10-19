@@ -87,59 +87,107 @@
 }
 
 :root {
-  color-scheme: dark;
-  /* Brewscope: deep dark with brass/amber warmth - stepped tonal ladder from near-black */
-  --background: oklch(0.09 0.018 45);       /* surface-1: deep base with amber tint (4% lightness) */
-  --foreground: oklch(0.98 0.005 45);       /* warm white */
-  --card: oklch(0.14 0.02 45);              /* surface-2: first elevation */
-  --card-foreground: oklch(0.98 0.005 45);
-  --popover: oklch(0.18 0.022 45);          /* surface-3: popovers */
-  --popover-foreground: oklch(0.98 0.005 45);
-  --primary: oklch(0.72 0.18 50);           /* luminous amber accent (high saturation) */
-  --primary-foreground: oklch(0.09 0.018 45);
-  --secondary: oklch(0.22 0.024 45);        /* surface-4: interactive */
-  --secondary-foreground: oklch(0.98 0.005 45);
-  --muted: oklch(0.18 0.022 45);
-  --muted-foreground: oklch(0.62 0.03 45);  /* muted brass-tinted text */
-  --accent: oklch(0.26 0.026 45);           /* surface-5: accents */
-  --accent-foreground: oklch(0.98 0.005 45);
-  --destructive: oklch(0.58 0.22 29);
-  --border: rgba(233, 165, 104, 0.12);      /* brass-tinted borders */
-  --input: rgba(233, 165, 104, 0.14);
-  --ring: oklch(0.72 0.18 50);              /* matches primary */
-  --chart-1: oklch(0.72 0.18 50);
-  --chart-2: oklch(0.65 0.15 48);
-  --chart-3: oklch(0.58 0.12 46);
-  --chart-4: oklch(0.52 0.10 44);
-  --chart-5: oklch(0.46 0.08 42);
-  /* Brewscope palette: one luminous amber accent */
-  --brew: oklch(0.72 0.18 50);              /* primary accent */
-  --brew-fg: oklch(0.09 0.018 45);          /* text on accent */
-  --brew-deep: oklch(0.58 0.16 48);         /* supporting brass */
-  --copper: oklch(0.52 0.14 42);
-  --amber: oklch(0.72 0.18 50);
-  --success: oklch(0.70 0.18 145);
-  --warning: oklch(0.72 0.18 65);
-  --info: oklch(0.68 0.15 230);
-  --sidebar: oklch(0.14 0.02 45);
-  --sidebar-foreground: oklch(0.98 0.005 45);
-  --sidebar-primary: oklch(0.72 0.18 50);
-  --sidebar-primary-foreground: oklch(0.09 0.018 45);
-  --sidebar-accent: oklch(0.22 0.024 45);
-  --sidebar-accent-foreground: oklch(0.98 0.005 45);
-  --sidebar-border: rgba(233, 165, 104, 0.12);
-  --sidebar-ring: oklch(0.72 0.18 50);
-  /* Dark mode 6-step surface ladder - amber-tinted blacks */
-  --surface-0: oklch(0.05 0.015 45);        /* deepest (3% lightness) */
-  --surface-1: oklch(0.09 0.018 45);        /* base: same as background */
-  --surface-2: oklch(0.14 0.02 45);         /* cards */
-  --surface-3: oklch(0.18 0.022 45);        /* elevated */
-  --surface-4: oklch(0.22 0.024 45);        /* interactive hover */
-  --surface-5: oklch(0.26 0.026 45);        /* highest layer */
+  color-scheme: light dark;
+  /* Brewscope light: warm off-white with amber accent, AA contrast */
+  --background: oklch(0.97 0.008 50);       /* warm off-white (linen-like) */
+  --foreground: oklch(0.20 0.02 45);        /* deep warm grey (AA contrast) */
+  --card: oklch(0.99 0.005 50);             /* near-white cards */
+  --card-foreground: oklch(0.20 0.02 45);
+  --popover: oklch(0.99 0.005 50);
+  --popover-foreground: oklch(0.20 0.02 45);
+  --primary: oklch(0.65 0.16 45);           /* darker amber for AA contrast on light */
+  --primary-foreground: oklch(0.99 0.005 50);
+  --secondary: oklch(0.93 0.01 50);
+  --secondary-foreground: oklch(0.20 0.02 45);
+  --muted: oklch(0.93 0.01 50);
+  --muted-foreground: oklch(0.45 0.03 45);  /* medium grey (AA contrast) */
+  --accent: oklch(0.90 0.012 50);
+  --accent-foreground: oklch(0.20 0.02 45);
+  --destructive: oklch(0.55 0.22 29);
+  --border: rgba(120, 85, 60, 0.15);        /* warm brown-tinted borders */
+  --input: rgba(120, 85, 60, 0.18);
+  --ring: oklch(0.65 0.16 45);
+  --chart-1: oklch(0.65 0.16 45);
+  --chart-2: oklch(0.58 0.14 48);
+  --chart-3: oklch(0.52 0.12 46);
+  --chart-4: oklch(0.46 0.10 44);
+  --chart-5: oklch(0.40 0.08 42);
+  --brew: oklch(0.65 0.16 45);              /* darker amber for light mode */
+  --brew-fg: oklch(0.99 0.005 50);
+  --brew-deep: oklch(0.55 0.14 48);
+  --copper: oklch(0.50 0.12 42);
+  --amber: oklch(0.65 0.16 45);
+  --success: oklch(0.55 0.16 145);
+  --warning: oklch(0.65 0.16 65);
+  --info: oklch(0.55 0.14 230);
+  --sidebar: oklch(0.99 0.005 50);
+  --sidebar-foreground: oklch(0.20 0.02 45);
+  --sidebar-primary: oklch(0.65 0.16 45);
+  --sidebar-primary-foreground: oklch(0.99 0.005 50);
+  --sidebar-accent: oklch(0.93 0.01 50);
+  --sidebar-accent-foreground: oklch(0.20 0.02 45);
+  --sidebar-border: rgba(120, 85, 60, 0.15);
+  --sidebar-ring: oklch(0.65 0.16 45);
+  --surface-0: oklch(0.99 0.005 50);
+  --surface-1: oklch(0.97 0.008 50);
+  --surface-2: oklch(0.95 0.01 50);
+  --surface-3: oklch(0.93 0.012 50);
+  --surface-4: oklch(0.90 0.014 50);
+  --surface-5: oklch(0.87 0.016 50);
 }
 
-.dark {
-  /* Remove - everything is dark mode now */
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    /* Brewscope dark: deep dark with brass/amber warmth - stepped tonal ladder from near-black */
+    --background: oklch(0.09 0.018 45);       /* surface-1: deep base with amber tint (4% lightness) */
+    --foreground: oklch(0.98 0.005 45);       /* warm white */
+    --card: oklch(0.14 0.02 45);              /* surface-2: first elevation */
+    --card-foreground: oklch(0.98 0.005 45);
+    --popover: oklch(0.18 0.022 45);          /* surface-3: popovers */
+    --popover-foreground: oklch(0.98 0.005 45);
+    --primary: oklch(0.72 0.18 50);           /* luminous amber accent (high saturation) */
+    --primary-foreground: oklch(0.09 0.018 45);
+    --secondary: oklch(0.22 0.024 45);        /* surface-4: interactive */
+    --secondary-foreground: oklch(0.98 0.005 45);
+    --muted: oklch(0.18 0.022 45);
+    --muted-foreground: oklch(0.62 0.03 45);  /* muted brass-tinted text */
+    --accent: oklch(0.26 0.026 45);           /* surface-5: accents */
+    --accent-foreground: oklch(0.98 0.005 45);
+    --destructive: oklch(0.58 0.22 29);
+    --border: rgba(233, 165, 104, 0.12);      /* brass-tinted borders */
+    --input: rgba(233, 165, 104, 0.14);
+    --ring: oklch(0.72 0.18 50);              /* matches primary */
+    --chart-1: oklch(0.72 0.18 50);
+    --chart-2: oklch(0.65 0.15 48);
+    --chart-3: oklch(0.58 0.12 46);
+    --chart-4: oklch(0.52 0.10 44);
+    --chart-5: oklch(0.46 0.08 42);
+    /* Brewscope palette: one luminous amber accent */
+    --brew: oklch(0.72 0.18 50);              /* primary accent */
+    --brew-fg: oklch(0.09 0.018 45);          /* text on accent */
+    --brew-deep: oklch(0.58 0.16 48);         /* supporting brass */
+    --copper: oklch(0.52 0.14 42);
+    --amber: oklch(0.72 0.18 50);
+    --success: oklch(0.70 0.18 145);
+    --warning: oklch(0.72 0.18 65);
+    --info: oklch(0.68 0.15 230);
+    --sidebar: oklch(0.14 0.02 45);
+    --sidebar-foreground: oklch(0.98 0.005 45);
+    --sidebar-primary: oklch(0.72 0.18 50);
+    --sidebar-primary-foreground: oklch(0.09 0.018 45);
+    --sidebar-accent: oklch(0.22 0.024 45);
+    --sidebar-accent-foreground: oklch(0.98 0.005 45);
+    --sidebar-border: rgba(233, 165, 104, 0.12);
+    --sidebar-ring: oklch(0.72 0.18 50);
+    /* Dark mode 6-step surface ladder - amber-tinted blacks */
+    --surface-0: oklch(0.05 0.015 45);        /* deepest (3% lightness) */
+    --surface-1: oklch(0.09 0.018 45);        /* base: same as background */
+    --surface-2: oklch(0.14 0.02 45);         /* cards */
+    --surface-3: oklch(0.18 0.022 45);        /* elevated */
+    --surface-4: oklch(0.22 0.024 45);        /* interactive hover */
+    --surface-5: oklch(0.26 0.026 45);        /* highest layer */
+  }
 }
 
 @layer base {
@@ -158,7 +206,7 @@
 @layer utilities {
   /* Typography utilities with fluid scaling - tight tracking on display, generous line-height on body */
   .text-display {
-    font-size: clamp(3.5rem, 8vw + 1rem, 6.5rem); /* 56px → 104px, increased for impact */
+    font-size: clamp(3rem, 6vw + 0.5rem, 5rem); /* 48px → 80px, reduced to fit 3 lines at 1440px */
     font-weight: 700;
     letter-spacing: -0.05em; /* Even tighter negative tracking */
     line-height: 0.96;

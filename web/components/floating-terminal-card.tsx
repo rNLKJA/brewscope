@@ -31,6 +31,11 @@ export function FloatingTerminalCard() {
   return (
     <div className="absolute -bottom-6 -right-2 sm:-right-8 z-10 rotate-2 animate-float">
       <div className="relative group">
+        {/* Label */}
+        <div className="absolute -top-8 left-0 text-xs font-medium text-muted-foreground">
+          Example output
+        </div>
+
         {/* Glow effect - enhanced */}
         <div className="absolute inset-0 bg-brew/30 blur-3xl rounded-lg opacity-70 group-hover:opacity-100 transition-opacity" />
 
