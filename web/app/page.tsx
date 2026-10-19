@@ -58,7 +58,7 @@ export default function Home() {
             <div>
               <p className="text-kicker text-brew">Homebrew inspector</p>
               <h1 className="mt-4 font-display text-display leading-[1.02]">
-                A <span className="text-brew">read-only</span> terminal tool for Homebrew on macOS.
+                A <span className="text-brew">read-only</span> terminal tool for Homebrew on macOS.<span aria-hidden="true" className="select-none opacity-0">BS</span>
               </h1>
               <p className="mt-8 max-w-xl text-body text-muted-foreground">
                 Analyse your Homebrew setup: find unused casks, detect conflicts, trace what is on your PATH and which
